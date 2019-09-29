@@ -7,27 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F25CEB14233FFA92005664BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F24662C5233FE4ED00AD4FA1 /* Assets.xcassets */; };
+		F25CEB16234075FA005664BB /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25CEB15234075FA005664BB /* HistoryViewModel.swift */; };
+		F269C936234079B100894DCD /* HistorySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F269C935234079B100894DCD /* HistorySectionView.swift */; };
 		F2A829DD233FB79900CC75AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A829DC233FB79900CC75AD /* AppDelegate.swift */; };
 		F2A829DF233FB79900CC75AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A829DE233FB79900CC75AD /* SceneDelegate.swift */; };
-		F2A829E6233FB79E00CC75AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2A829E5233FB79E00CC75AD /* Assets.xcassets */; };
 		F2A829E9233FB79E00CC75AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2A829E7233FB79E00CC75AD /* LaunchScreen.storyboard */; };
 		F2A829F4233FD0ED00CC75AD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A829F2233FD0ED00CC75AD /* HomeViewController.swift */; };
 		F2A829F5233FD0ED00CC75AD /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A829F3233FD0ED00CC75AD /* HomeViewController.xib */; };
 		F2A829F8233FD14900CC75AD /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A829F6233FD14900CC75AD /* HistoryViewController.swift */; };
 		F2A829F9233FD14900CC75AD /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A829F7233FD14900CC75AD /* HistoryViewController.xib */; };
+		F2A8BD0F233FD450002C7BAF /* TwoLabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A8BD0D233FD450002C7BAF /* TwoLabelTableViewCell.swift */; };
+		F2A8BD10233FD450002C7BAF /* TwoLabelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A8BD0E233FD450002C7BAF /* TwoLabelTableViewCell.xib */; };
+		F2A8BD12233FD4F3002C7BAF /* TwoLabelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A8BD11233FD4F3002C7BAF /* TwoLabelViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F24662C5233FE4ED00AD4FA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F25CEB15234075FA005664BB /* HistoryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		F269C935234079B100894DCD /* HistorySectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistorySectionView.swift; sourceTree = "<group>"; };
 		F2A829D9233FB79900CC75AD /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2A829DC233FB79900CC75AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2A829DE233FB79900CC75AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F2A829E5233FB79E00CC75AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F2A829E8233FB79E00CC75AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F2A829EA233FB79E00CC75AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2A829F2233FD0ED00CC75AD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F2A829F3233FD0ED00CC75AD /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		F2A829F6233FD14900CC75AD /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		F2A829F7233FD14900CC75AD /* HistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
+		F2A8BD0D233FD450002C7BAF /* TwoLabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoLabelTableViewCell.swift; sourceTree = "<group>"; };
+		F2A8BD0E233FD450002C7BAF /* TwoLabelTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoLabelTableViewCell.xib; sourceTree = "<group>"; };
+		F2A8BD11233FD4F3002C7BAF /* TwoLabelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoLabelViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,10 +70,12 @@
 		F2A829DB233FB79900CC75AD /* ExpenseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				F2A8BD13233FD4F8002C7BAF /* ViewModels */,
 				F2A829FA233FD15500CC75AD /* Controllers */,
+				F2A8BD0C233FD412002C7BAF /* Views */,
 				F2A829DC233FB79900CC75AD /* AppDelegate.swift */,
+				F24662C5233FE4ED00AD4FA1 /* Assets.xcassets */,
 				F2A829DE233FB79900CC75AD /* SceneDelegate.swift */,
-				F2A829E5233FB79E00CC75AD /* Assets.xcassets */,
 				F2A829E7233FB79E00CC75AD /* LaunchScreen.storyboard */,
 				F2A829EA233FB79E00CC75AD /* Info.plist */,
 			);
@@ -79,6 +91,25 @@
 				F2A829F7233FD14900CC75AD /* HistoryViewController.xib */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F2A8BD0C233FD412002C7BAF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F269C935234079B100894DCD /* HistorySectionView.swift */,
+				F2A8BD0D233FD450002C7BAF /* TwoLabelTableViewCell.swift */,
+				F2A8BD0E233FD450002C7BAF /* TwoLabelTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F2A8BD13233FD4F8002C7BAF /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F25CEB15234075FA005664BB /* HistoryViewModel.swift */,
+				F2A8BD11233FD4F3002C7BAF /* TwoLabelViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,9 +171,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2A829E9233FB79E00CC75AD /* LaunchScreen.storyboard in Resources */,
-				F2A829E6233FB79E00CC75AD /* Assets.xcassets in Resources */,
 				F2A829F5233FD0ED00CC75AD /* HomeViewController.xib in Resources */,
 				F2A829F9233FD14900CC75AD /* HistoryViewController.xib in Resources */,
+				F2A8BD10233FD450002C7BAF /* TwoLabelTableViewCell.xib in Resources */,
+				F25CEB14233FFA92005664BB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,8 +187,12 @@
 			files = (
 				F2A829F4233FD0ED00CC75AD /* HomeViewController.swift in Sources */,
 				F2A829DD233FB79900CC75AD /* AppDelegate.swift in Sources */,
+				F2A8BD12233FD4F3002C7BAF /* TwoLabelViewModel.swift in Sources */,
+				F2A8BD0F233FD450002C7BAF /* TwoLabelTableViewCell.swift in Sources */,
 				F2A829F8233FD14900CC75AD /* HistoryViewController.swift in Sources */,
+				F269C936234079B100894DCD /* HistorySectionView.swift in Sources */,
 				F2A829DF233FB79900CC75AD /* SceneDelegate.swift in Sources */,
+				F25CEB16234075FA005664BB /* HistoryViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

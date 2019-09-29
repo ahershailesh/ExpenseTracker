@@ -30,9 +30,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         homeViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home"), selectedImage: UIImage(named: "home-selected"))
         
         let historyViewController = HistoryViewController()
-        historyViewController.view.backgroundColor = .blue
         historyViewController.tabBarItem = UITabBarItem(title: "History", image: UIImage(named: "history"), selectedImage: UIImage(named: "history-selected"))
-        tabBarController?.viewControllers = [homeViewController, historyViewController]
+        tabBarController?.viewControllers = [historyViewController, homeViewController]
         
     }
 }
