@@ -13,7 +13,13 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = addButton
     }
 
+    @objc private func addButtonTapped() {
+        let expenseController = AddExpenseViewController(nibName: "AddExpenseViewController", bundle: nil)
+        present(expenseController, animated: true, completion: nil)
+    }
+    
 }

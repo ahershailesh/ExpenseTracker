@@ -57,4 +57,9 @@ class HistorySectionView: UIView {
         
         rightLabel?.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
     }
+    
+    private func clean() {
+        leftLabel?.attributedText = nil
+        rightLabel?.attributedText = nil
+    }
 }

@@ -16,6 +16,8 @@ class HistoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.title = "History"
+        
         registerViews()
         let leftAttributedString = NSAttributedString(string: "Left content")
         let rightAttributedString = NSAttributedString(string: "Right content")

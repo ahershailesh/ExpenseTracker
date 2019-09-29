@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         setupTabbar()
         window = UIWindow(frame: UIScreen.main.bounds)
-        window!.rootViewController = UINavigationController(rootViewController: tabBarController!)
+        window!.rootViewController = tabBarController
         window!.makeKeyAndVisible()
         window?.windowScene = windowScene
     }
@@ -31,7 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let historyViewController = HistoryViewController()
         historyViewController.tabBarItem = UITabBarItem(title: "History", image: UIImage(named: "history"), selectedImage: UIImage(named: "history-selected"))
-        tabBarController?.viewControllers = [historyViewController, homeViewController]
+        tabBarController?.viewControllers = [UINavigationController(rootViewController: homeViewController), UINavigationController(rootViewController: historyViewController)]
         
     }
 }
