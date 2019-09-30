@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
 
     @objc private func addButtonTapped() {
         let expenseController = AddExpenseViewController(nibName: "AddExpenseViewController", bundle: nil)
-        present(expenseController, animated: true, completion: nil)
+        present(UINavigationController(rootViewController: expenseController) , animated: true, completion: nil)
     }
     
 }

@@ -9,6 +9,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddExpenseViewController" customModule="ExpenseTracker" customModuleProvider="target">
             <connections>
+                <outlet property="addExpenseView" destination="Bp7-d8-ibI" id="2Fu-CS-mCP"/>
+                <outlet property="categoryButton" destination="MIF-Nf-xuj" id="LrK-fw-KwJ"/>
+                <outlet property="expenseTextField" destination="Ri4-kK-kRX" id="oMh-hG-xFo"/>
+                <outlet property="noteTextView" destination="eLY-EV-zVk" id="oN5-wi-TWz"/>
+                <outlet property="tagButton" destination="ZTf-Bc-oFW" id="mxn-ey-xIm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bp7-d8-ibI">
-                    <rect key="frame" x="16" y="316" width="382" height="274"/>
+                    <rect key="frame" x="16" y="60" width="382" height="274"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expense" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uLf-WO-S7U">
                             <rect key="frame" x="16" y="23" width="65" height="20.5"/>
@@ -50,7 +55,7 @@
                                 <constraint firstAttribute="width" constant="64" id="nt4-e7-UFz"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MIF-Nf-xuj">
                             <rect key="frame" x="331" y="66" width="35" height="30"/>
@@ -67,10 +72,9 @@
                                 <constraint firstAttribute="width" constant="240" id="F1b-zu-Mjd"/>
                                 <constraint firstAttribute="height" constant="100" id="RpS-JA-v6N"/>
                             </constraints>
-                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                             <color key="textColor" xcode11CocoaTouchSystemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                         </textView>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -100,8 +104,14 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Bp7-d8-ibI" secondAttribute="trailing" constant="16" id="17f-mC-PWF"/>
                 <constraint firstItem="Bp7-d8-ibI" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="CSY-ba-EtW"/>
                 <constraint firstItem="Bp7-d8-ibI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Qj6-ft-kjO"/>
+                <constraint firstItem="Bp7-d8-ibI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="biY-YY-SmK"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="CSY-ba-EtW"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="137.68115942028987" y="102.45535714285714"/>
         </view>
     </objects>

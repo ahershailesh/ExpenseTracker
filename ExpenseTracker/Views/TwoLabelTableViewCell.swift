@@ -22,6 +22,7 @@ class TwoLabelTableViewCell: UITableViewCell {
             rightLabel.attributedText = viewModel.rightAttributedString
             containerView.backgroundColor = viewModel.backgroundColor
             containerView.layer.cornerRadius = 8
+            selectionStyle = .none
         }
     }
     

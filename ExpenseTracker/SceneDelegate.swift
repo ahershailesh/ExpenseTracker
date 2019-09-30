@@ -25,13 +25,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func setupTabbar() {
         tabBarController = UITabBarController()
         let homeViewController = HomeViewController()
-        homeViewController.view.backgroundColor = .red
         
         homeViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home"), selectedImage: UIImage(named: "home-selected"))
         
         let historyViewController = HistoryViewController()
         historyViewController.tabBarItem = UITabBarItem(title: "History", image: UIImage(named: "history"), selectedImage: UIImage(named: "history-selected"))
-        tabBarController?.viewControllers = [UINavigationController(rootViewController: homeViewController), UINavigationController(rootViewController: historyViewController)]
+        
+        let settingsViewController = SettingsViewController()
+        settingsViewController.tabBarItem =
+            
+            UITabBarItem(title: "Settings", image: UIImage(named: "settings"), selectedImage: UIImage(named: "settings-selected"))
+        
+        tabBarController?.viewControllers = [UINavigationController(rootViewController: homeViewController), UINavigationController(rootViewController: historyViewController), UINavigationController(rootViewController: settingsViewController)]
         
     }
 }

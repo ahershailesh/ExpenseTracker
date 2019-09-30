@@ -17,22 +17,34 @@ class HistoryViewController: UIViewController {
         super.viewDidLoad()
 
         navigationItem.title = "History"
-        
         registerViews()
+        prepareData()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = addButton
+    }
+    
+    private func prepareData() {
+        
         let leftAttributedString = NSAttributedString(string: "Left content")
         let rightAttributedString = NSAttributedString(string: "Right content")
         let array = [TwoLabelViewModel(leftAttributedString: leftAttributedString, rightAttributedString: rightAttributedString, backgroundColor: .red),
-        TwoLabelViewModel(leftAttributedString: leftAttributedString, rightAttributedString: rightAttributedString, backgroundColor: .blue),
-        TwoLabelViewModel(leftAttributedString: leftAttributedString, rightAttributedString: rightAttributedString, backgroundColor: .green)]
+                     TwoLabelViewModel(leftAttributedString: leftAttributedString, rightAttributedString: rightAttributedString, backgroundColor: .blue),
+                     TwoLabelViewModel(leftAttributedString: leftAttributedString, rightAttributedString: rightAttributedString, backgroundColor: .green)]
         
         let dateString = NSAttributedString(string: "Yesterday")
         let totalExpense = NSAttributedString(string: "500")
         
         historyArray = [HistoryViewModel(dateString: dateString, totalExpense: totalExpense, modelArray: array)]
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .none
+    }
+    
+    @objc private func addButtonTapped() {
+        let expenseController = AddExpenseViewController(nibName: "AddExpenseViewController", bundle: nil)
+        present(UINavigationController(rootViewController: expenseController) , animated: true, completion: nil)
     }
     
     private func registerViews() {

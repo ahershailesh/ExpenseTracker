@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14810.11" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14766.13"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListingViewController" customModule="ExpenseTracker" customModuleProvider="target">
+            <connections>
+                <outlet property="searchBar" destination="pbf-aU-jNl" id="vXl-uZ-hDU"/>
+                <outlet property="tableView" destination="RiF-pl-f5u" id="bhd-i5-DzS"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RiF-pl-f5u">
+                    <rect key="frame" x="0.0" y="116" width="414" height="746"/>
+                    <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </tableView>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="pbf-aU-jNl">
+                    <rect key="frame" x="0.0" y="60" width="334" height="56"/>
+                    <color key="backgroundColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbK-pT-zTv">
+                    <rect key="frame" x="350" y="73" width="48" height="30"/>
+                    <state key="normal" title="Cancel"/>
+                    <connections>
+                        <action selector="cancelButtonTapped:" destination="-1" eventType="touchUpInside" id="2aX-xG-K9i"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="RiF-pl-f5u" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="20W-Pq-W2Z"/>
+                <constraint firstAttribute="trailing" secondItem="dbK-pT-zTv" secondAttribute="trailing" constant="16" id="6aT-Ha-gnH"/>
+                <constraint firstItem="pbf-aU-jNl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NMe-lE-Hti"/>
+                <constraint firstItem="dbK-pT-zTv" firstAttribute="centerY" secondItem="pbf-aU-jNl" secondAttribute="centerY" id="SD8-bY-sjx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="RiF-pl-f5u" secondAttribute="bottom" id="VV9-bG-5ys"/>
+                <constraint firstItem="RiF-pl-f5u" firstAttribute="top" secondItem="pbf-aU-jNl" secondAttribute="bottom" id="b3S-IC-s7c"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="RiF-pl-f5u" secondAttribute="trailing" id="eYw-Oa-Ny4"/>
+                <constraint firstItem="dbK-pT-zTv" firstAttribute="leading" secondItem="pbf-aU-jNl" secondAttribute="trailing" constant="16" id="kfC-Zo-S3E"/>
+                <constraint firstItem="pbf-aU-jNl" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="olO-Cf-wHW"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="137.68115942028987" y="124.55357142857142"/>
+        </view>
+    </objects>
+</document>
