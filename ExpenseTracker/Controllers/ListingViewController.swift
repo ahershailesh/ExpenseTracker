@@ -69,34 +69,44 @@ final class ListingViewController: UIViewController {
 extension ListingViewController : UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filter(with: searchText)
-    }
-    
-    private func filter(with text: String) {
-        
-        addSection(with: text)
-        
+        let section1 = addCreateSection(with: searchText)
+        let section2 = filter(with: searchText)
+        viewModels = [section1, section2].compactMap { $0 }
         tableView.reloadData()
     }
     
-    private func addSection(with text: String) {
-        guard !text.isEmpty else {
-            viewModels.removeFirst()
-            tableView.reloadData()
-            return
+    private func filter(with text: String) -> SectionListItem? {
+        let items = filterItems(for: text)
+        let allList = getMappedViewModels(from: items)
+        if !allList.isEmpty {
+            return SectionListItem(items: allList, title: NSAttributedString(string: TITLE, attributes: sectionHeaderAttribute))
         }
-        let newItem = [ListItem(attributedString: NSAttributedString(string: text, attributes: attributes))]
-        if viewModels.count == 2 {
-            viewModels.removeFirst()
-        }
-        let sectionItem = SectionListItem(items: newItem, title: NSAttributedString(string: NEW_SECTION_TITLE, attributes: sectionHeaderAttribute))
-        
-        viewModels.insert(sectionItem, at: 0)
+        return nil
     }
     
-//    private func filterItems(from text: String) {
-//        let items =
-//    }
+    private func addCreateSection(with text: String) -> SectionListItem? {
+        
+        guard !text.isEmpty,
+        !contents.contains(text.trimmingCharacters(in: .whitespaces)) else {
+            viewModels.removeFirst()
+            tableView.reloadData()
+            return nil
+        }
+        let newItem = [ListItem(attributedString: NSAttributedString(string: text, attributes: attributes))]
+        return SectionListItem(items: newItem, title: NSAttributedString(string: NEW_SECTION_TITLE, attributes: sectionHeaderAttribute))
+    }
+    
+    private func filterItems(for text: String) -> [String] {
+        guard !text.isEmpty else { return contents }
+        
+        return contents.filter { (content) -> Bool in
+            return content.contains(text)
+        }
+    }
+    
+    private func getMappedViewModels(from array: [String]) -> [ListItem] {
+        return array.map { return ListItem(attributedString: NSAttributedString(string: $0, attributes: attributes)) }
+    }
 }
 
 extension ListingViewController : UITableViewDataSource {
