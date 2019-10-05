@@ -47,7 +47,7 @@ extension SettingsViewController : UITableViewDelegate {
             case .createCategory:
                 openCategoryController()
             case .createTag:
-                openCategoryController()
+                openTagsController()
             }
         }
         
@@ -57,5 +57,11 @@ extension SettingsViewController : UITableViewDelegate {
         let categoryController = ListingViewController()
         categoryController.contents = ["Category 1", "Category 2", "Category 3"]
         present(categoryController, animated: true, completion: nil)
+    }
+    
+    private func openTagsController() {
+        let tagsController = ListingViewController()
+        tagsController.contents = ["Tag 1", "Tag 2", "Tag 3"]
+        present(tagsController, animated: true, completion: nil)
     }
 }
