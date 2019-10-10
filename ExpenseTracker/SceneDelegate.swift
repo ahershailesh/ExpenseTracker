@@ -20,6 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window!.rootViewController = tabBarController
         window!.makeKeyAndVisible()
         window?.windowScene = windowScene
+        
+        loadPersistanceStore()
     }
     
     private func setupTabbar() {
@@ -38,6 +40,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         tabBarController?.viewControllers = [UINavigationController(rootViewController: homeViewController), UINavigationController(rootViewController: historyViewController), UINavigationController(rootViewController: settingsViewController)]
         
+    }
+    
+    private func loadPersistanceStore() {
+        _ = CoreDataManager.shared.container.loadPersistentStores(completionHandler: { (_, _) in
+            DataManger.setupData()
+        })
+
     }
 }
 

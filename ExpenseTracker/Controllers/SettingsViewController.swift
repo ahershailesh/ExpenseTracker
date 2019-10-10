@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import CoreData
 
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    private let sections : [SettingsConstant] = [.createCategory,
-    .createTag]
+    private let sections : [SettingsConstant] = [.tags]
+    
+    var listViewController : ListingViewController?
+    
+    private var context : NSManagedObjectContext {
+        return CoreDataManager.shared.container.viewContext
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +32,7 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return sections.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -44,24 +50,38 @@ extension SettingsViewController : UITableViewDelegate {
             let enumValue = SettingsConstant(rawValue: title) {
             
             switch enumValue {
-            case .createCategory:
-                openCategoryController()
-            case .createTag:
+            case .tags:
                 openTagsController()
+            default: break
             }
         }
         
     }
     
-    private func openCategoryController() {
-        let categoryController = ListingViewController()
-        categoryController.contents = ["Category 1", "Category 2", "Category 3"]
-        present(categoryController, animated: true, completion: nil)
+    private func openTagsController() {
+        listViewController = ListingViewController()
+        let tags = try? context.fetch(Tag.fetchRequest())
+        listViewController?.contents = tags?.compactMap { return ($0 as AnyObject).title } ?? []
+        listViewController?.delegate = self
+        present(listViewController!, animated: true, completion: nil)
     }
     
-    private func openTagsController() {
-        let tagsController = ListingViewController()
-        tagsController.contents = ["Tag 1", "Tag 2", "Tag 3"]
-        present(tagsController, animated: true, completion: nil)
+    private func createTags(with name: String) {
+        let createTagController = ColorPickerViewController()
+        let navController = UINavigationController(rootViewController: createTagController)
+        createTagController.title = name
+        createTagController.colors = [.blue, .gray, .green, .brown, .darkGray, .darkText]
+        present(navController, animated: true, completion: nil)
+    }
+}
+
+extension SettingsViewController : ListingViewControllerDelegate {
+    func createNew(_ listItem: String) {
+        listViewController?.dismiss(animated: true, completion: nil)
+        createTags(with: listItem)
+    }
+    
+    func selectedListItem(_ listItem : String) {
+        listViewController?.dismiss(animated: true, completion: nil)
     }
 }

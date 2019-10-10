@@ -1,0 +1,28 @@
+{
+    "Travel" : [
+        "Petrol",
+        "Air-fare",
+        "Train-fare",
+        "Bus-fare",
+        "Bike"
+    ],
+    "Food" : [
+        "Restorant",
+        "Vegatables"
+    ],
+    "Penalties" : [
+        
+    ],
+    "Shopping" : [
+        
+    ],
+    "EMI" : [
+        "House",
+        "Car",
+        "Personnel",
+        "Other"
+    ],
+    "Entertainment" : [
+        "Movie"
+    ]
+}

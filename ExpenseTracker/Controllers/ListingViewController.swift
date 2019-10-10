@@ -17,10 +17,17 @@ private struct SectionListItem {
     var title : NSAttributedString
 }
 
+protocol ListingViewControllerDelegate : class {
+    func selectedListItem(_ listItem : String)
+    func createNew(_ listItem : String)
+}
+
 final class ListingViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    
+    weak var delegate : ListingViewControllerDelegate?
     
     private var attributes : [NSAttributedString.Key : Any] {
         return [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16),
@@ -32,18 +39,36 @@ final class ListingViewController: UIViewController {
                 NSAttributedString.Key.foregroundColor : UIColor.gray]
     }
     
-    private let NEW_SECTION_TITLE = "Create new"
-    private let TITLE = "All"
+    enum ListingSection : String {
+        case new = "Create new"
+        case all = "All"
+    }
     
     private var viewModels : [SectionListItem] = []
     private var searchString : String?
+    private var showAddNewItemIfNotMatched = false
+    private var isSearchEnabled = false
+    private var isSearchMatched = false
     
     var contents : [String] = [] {
         didSet {
-            let array = contents.map { return ListItem(attributedString: NSAttributedString(string: $0, attributes: attributes))
+            if !contents.isEmpty {
+                let array = contents.map { return ListItem(attributedString: NSAttributedString(string: $0, attributes: attributes))
+                }
+                viewModels = [SectionListItem(items: array, title: NSAttributedString(string: ListingSection.all.rawValue, attributes: sectionHeaderAttribute))]
+                isSearchEnabled = true
+            } else {
+                viewModels = [SectionListItem(items: [], title: NSAttributedString(string: "Create new by typing in search box", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray]))]
+                isSearchEnabled = false
+                showAddNewItemIfNotMatched = true
             }
-            viewModels = [SectionListItem(items: array, title: NSAttributedString(string: TITLE, attributes: sectionHeaderAttribute))]
         }
+    }
+    
+    convenience init(canShowAddNewItemIfNotMatched : Bool, delegate: ListingViewControllerDelegate? = nil) {
+        self.init(nibName: nil, bundle: nil)
+        showAddNewItemIfNotMatched = canShowAddNewItemIfNotMatched
+        self.delegate = delegate
     }
     
     override func viewDidLoad() {
@@ -54,6 +79,8 @@ final class ListingViewController: UIViewController {
         tableView.delegate = self
         
         tableView.separatorStyle = .none
+        
+//        enableSearchBar(isEnabled: isSearchEnabled)
     }
     
     private func registerCell() {
@@ -64,6 +91,11 @@ final class ListingViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+//    private func enableSearchBar(isEnabled: Bool) {
+//        if !isEnabled {
+//            searchBar.isHidden = true
+//        }
+//    }
 }
 
 extension ListingViewController : UISearchBarDelegate {
@@ -79,21 +111,23 @@ extension ListingViewController : UISearchBarDelegate {
         let items = filterItems(for: text)
         let allList = getMappedViewModels(from: items)
         if !allList.isEmpty {
-            return SectionListItem(items: allList, title: NSAttributedString(string: TITLE, attributes: sectionHeaderAttribute))
+            return SectionListItem(items: allList, title: NSAttributedString(string: ListingSection.all.rawValue, attributes: sectionHeaderAttribute))
         }
         return nil
     }
     
     private func addCreateSection(with text: String) -> SectionListItem? {
         
+        searchString = text
+        
         guard !text.isEmpty,
-        !contents.contains(text.trimmingCharacters(in: .whitespaces)) else {
-            viewModels.removeFirst()
-            tableView.reloadData()
+        !contents.contains(text.trimmingCharacters(in: .whitespaces)),
+        showAddNewItemIfNotMatched else {
             return nil
         }
+        
         let newItem = [ListItem(attributedString: NSAttributedString(string: text, attributes: attributes))]
-        return SectionListItem(items: newItem, title: NSAttributedString(string: NEW_SECTION_TITLE, attributes: sectionHeaderAttribute))
+        return SectionListItem(items: newItem, title: NSAttributedString(string: ListingSection.new.rawValue, attributes: sectionHeaderAttribute))
     }
     
     private func filterItems(for text: String) -> [String] {
@@ -138,5 +172,18 @@ extension ListingViewController : UITableViewDataSource {
 }
 
 extension ListingViewController : UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = viewModels[indexPath.section].items[indexPath.row]
+        let sectionValue = viewModels[indexPath.section].title.string
+        guard let sectionItem = ListingSection(rawValue: sectionValue) else {
+            return
+        }
+        
+        switch sectionItem {
+        case .new:
+            delegate?.createNew(item.attributedString.string)
+        default:
+            delegate?.selectedListItem(item.attributedString.string)
+        }
+    }
 }
