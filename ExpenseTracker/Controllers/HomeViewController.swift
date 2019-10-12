@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
 
     private var categoryController : ListingViewController?
     private var categories : [Category] = []
+    private var expenseController : AddExpenseViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +31,12 @@ class HomeViewController: UIViewController {
     }
     
     private func addExpense(category: Category) {
-        let expenseController = AddExpenseViewController(cateogory: category)
-        expenseController.navigationItem.title = "Add Expense"
-        present(UINavigationController(rootViewController: expenseController) , animated: true, completion: nil)
+        let expenseViewModel = ExpenseViewModel(expenseAmount: nil, note: nil, categoryName: category.title ?? "", categoryTag: category.tag?.title ?? "")
+        
+        expenseController = AddExpenseViewController(model: expenseViewModel)
+        expenseController?.delegate = self
+        expenseController?.navigationItem.title = "Add Expense"
+        present(UINavigationController(rootViewController: expenseController!) , animated: true, completion: nil)
     }
     
     private func setupCategories() {
@@ -44,7 +48,6 @@ class HomeViewController: UIViewController {
         } catch {
             print("Found error while fetching categories")
         }
-        
     }
 }
 
@@ -59,6 +62,18 @@ extension HomeViewController : ListingViewControllerDelegate {
             addExpense(category: cateogory)
         }
     }
-    
-    
+}
+
+extension HomeViewController : AddExpenseViewControllerDelegate {
+    func addExpense(_ expenseModel: ExpenseViewModel) {
+        let expense = Expense(context: CoreDataManager.shared.context)
+        expense.timeStamp = Date()
+        expense.spend = expenseModel.expenseAmount ?? 0
+        expense.category = categories.first(where: { (cateogory) -> Bool in
+            return cateogory.title == expenseModel.categoryName
+        })
+        expense.note = expenseModel.note
+        CoreDataManager.shared.save()
+        expenseController?.dismiss(animated: true, completion: nil)
+    }
 }

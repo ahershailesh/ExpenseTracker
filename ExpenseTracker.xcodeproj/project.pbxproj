@@ -9,12 +9,6 @@
 /* Begin PBXBuildFile section */
 		F25BDDF423491F8700D2DD12 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25BDDF323491F8700D2DD12 /* CoreDataManager.swift */; };
 		F25BDE192349247500D2DD12 /* ExpenseTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F25BDE0A234922E100D2DD12 /* ExpenseTracker.xcdatamodeld */; };
-		F25BDE3A234996B800D2DD12 /* Tag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25BDE34234996B800D2DD12 /* Tag+CoreDataClass.swift */; };
-		F25BDE3B234996B800D2DD12 /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25BDE35234996B800D2DD12 /* Tag+CoreDataProperties.swift */; };
-		F25BDE3C234996B800D2DD12 /* Expense+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25BDE36234996B800D2DD12 /* Expense+CoreDataClass.swift */; };
-		F25BDE3D234996B800D2DD12 /* Expense+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25BDE37234996B800D2DD12 /* Expense+CoreDataProperties.swift */; };
-		F25BDE3E234996B800D2DD12 /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25BDE38234996B800D2DD12 /* Category+CoreDataClass.swift */; };
-		F25BDE3F234996B800D2DD12 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25BDE39234996B800D2DD12 /* Category+CoreDataProperties.swift */; };
 		F25BDE4323499CAD00D2DD12 /* ColorPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F25BDE4123499CAD00D2DD12 /* ColorPickerViewController.xib */; };
 		F25BDE482349A50900D2DD12 /* LabelHeaderViewCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25BDE462349A50900D2DD12 /* LabelHeaderViewCollectionReusableView.swift */; };
 		F25BDE492349A50900D2DD12 /* LabelHeaderViewCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F25BDE472349A50900D2DD12 /* LabelHeaderViewCollectionReusableView.xib */; };
@@ -42,19 +36,20 @@
 		F2A8BD0F233FD450002C7BAF /* TwoLabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A8BD0D233FD450002C7BAF /* TwoLabelTableViewCell.swift */; };
 		F2A8BD10233FD450002C7BAF /* TwoLabelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A8BD0E233FD450002C7BAF /* TwoLabelTableViewCell.xib */; };
 		F2A8BD12233FD4F3002C7BAF /* TwoLabelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A8BD11233FD4F3002C7BAF /* TwoLabelViewModel.swift */; };
+		F2B17651234F97A200D174F0 /* Tag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B1764B234F97A200D174F0 /* Tag+CoreDataClass.swift */; };
+		F2B17652234F97A200D174F0 /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B1764C234F97A200D174F0 /* Tag+CoreDataProperties.swift */; };
+		F2B17653234F97A200D174F0 /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B1764D234F97A200D174F0 /* Category+CoreDataClass.swift */; };
+		F2B17654234F97A200D174F0 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B1764E234F97A200D174F0 /* Category+CoreDataProperties.swift */; };
+		F2B17655234F97A200D174F0 /* Expense+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B1764F234F97A200D174F0 /* Expense+CoreDataClass.swift */; };
+		F2B17656234F97A200D174F0 /* Expense+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B17650234F97A200D174F0 /* Expense+CoreDataProperties.swift */; };
 		F2C7EFB82348E1F30032AA41 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C7EFB72348E1F30032AA41 /* Global.swift */; };
+		F2D04F1723503197009EB085 /* ExpenseData.json in Resources */ = {isa = PBXBuildFile; fileRef = F2D04F1623503197009EB085 /* ExpenseData.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F24662C5233FE4ED00AD4FA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F25BDDF323491F8700D2DD12 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		F25BDE0B234922E100D2DD12 /* ExpenseTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExpenseTracker.xcdatamodel; sourceTree = "<group>"; };
-		F25BDE34234996B800D2DD12 /* Tag+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F25BDE35234996B800D2DD12 /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F25BDE36234996B800D2DD12 /* Expense+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Expense+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F25BDE37234996B800D2DD12 /* Expense+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Expense+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F25BDE38234996B800D2DD12 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F25BDE39234996B800D2DD12 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F25BDE4123499CAD00D2DD12 /* ColorPickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPickerViewController.xib; sourceTree = "<group>"; };
 		F25BDE462349A50900D2DD12 /* LabelHeaderViewCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelHeaderViewCollectionReusableView.swift; sourceTree = "<group>"; };
 		F25BDE472349A50900D2DD12 /* LabelHeaderViewCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelHeaderViewCollectionReusableView.xib; sourceTree = "<group>"; };
@@ -83,7 +78,14 @@
 		F2A8BD0D233FD450002C7BAF /* TwoLabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoLabelTableViewCell.swift; sourceTree = "<group>"; };
 		F2A8BD0E233FD450002C7BAF /* TwoLabelTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoLabelTableViewCell.xib; sourceTree = "<group>"; };
 		F2A8BD11233FD4F3002C7BAF /* TwoLabelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoLabelViewModel.swift; sourceTree = "<group>"; };
+		F2B1764B234F97A200D174F0 /* Tag+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F2B1764C234F97A200D174F0 /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F2B1764D234F97A200D174F0 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F2B1764E234F97A200D174F0 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F2B1764F234F97A200D174F0 /* Expense+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Expense+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F2B17650234F97A200D174F0 /* Expense+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Expense+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F2C7EFB72348E1F30032AA41 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		F2D04F1623503197009EB085 /* ExpenseData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ExpenseData.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,12 +102,12 @@
 		F25BDDE623491F1800D2DD12 /* Core Data Models */ = {
 			isa = PBXGroup;
 			children = (
-				F25BDE34234996B800D2DD12 /* Tag+CoreDataClass.swift */,
-				F25BDE35234996B800D2DD12 /* Tag+CoreDataProperties.swift */,
-				F25BDE36234996B800D2DD12 /* Expense+CoreDataClass.swift */,
-				F25BDE37234996B800D2DD12 /* Expense+CoreDataProperties.swift */,
-				F25BDE38234996B800D2DD12 /* Category+CoreDataClass.swift */,
-				F25BDE39234996B800D2DD12 /* Category+CoreDataProperties.swift */,
+				F2B1764B234F97A200D174F0 /* Tag+CoreDataClass.swift */,
+				F2B1764C234F97A200D174F0 /* Tag+CoreDataProperties.swift */,
+				F2B1764D234F97A200D174F0 /* Category+CoreDataClass.swift */,
+				F2B1764E234F97A200D174F0 /* Category+CoreDataProperties.swift */,
+				F2B1764F234F97A200D174F0 /* Expense+CoreDataClass.swift */,
+				F2B17650234F97A200D174F0 /* Expense+CoreDataProperties.swift */,
 			);
 			path = "Core Data Models";
 			sourceTree = "<group>";
@@ -152,6 +154,7 @@
 				F25BDE0A234922E100D2DD12 /* ExpenseTracker.xcdatamodeld */,
 				F2649ACA234E41E200C1C971 /* DataManger.swift */,
 				F2649ACC234E423800C1C971 /* DefaultData.json */,
+				F2D04F1623503197009EB085 /* ExpenseData.json */,
 			);
 			path = ExpenseTracker;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				F2649ACD234E423800C1C971 /* DefaultData.json in Resources */,
 				F269C9412340AFEC00894DCD /* SettingsViewController.xib in Resources */,
 				F25BDE492349A50900D2DD12 /* LabelHeaderViewCollectionReusableView.xib in Resources */,
+				F2D04F1723503197009EB085 /* ExpenseData.json in Resources */,
 				F25CEB14233FFA92005664BB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,7 +289,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2A829F4233FD0ED00CC75AD /* HomeViewController.swift in Sources */,
-				F25BDE3A234996B800D2DD12 /* Tag+CoreDataClass.swift in Sources */,
 				F2A829DD233FB79900CC75AD /* AppDelegate.swift in Sources */,
 				F25BDE192349247500D2DD12 /* ExpenseTracker.xcdatamodeld in Sources */,
 				F269C9422340AFEC00894DCD /* SettingsViewController.swift in Sources */,
@@ -293,22 +296,23 @@
 				F2A8BD0F233FD450002C7BAF /* TwoLabelTableViewCell.swift in Sources */,
 				F25BDE4B2349A99900D2DD12 /* ColorPickerViewController.swift in Sources */,
 				F269C93B234088ED00894DCD /* AddExpenseViewController.swift in Sources */,
-				F25BDE3B234996B800D2DD12 /* Tag+CoreDataProperties.swift in Sources */,
 				F2C7EFB82348E1F30032AA41 /* Global.swift in Sources */,
 				F269C9492342681100894DCD /* ListingViewController.swift in Sources */,
+				F2B17655234F97A200D174F0 /* Expense+CoreDataClass.swift in Sources */,
+				F2B17651234F97A200D174F0 /* Tag+CoreDataClass.swift in Sources */,
+				F2B17652234F97A200D174F0 /* Tag+CoreDataProperties.swift in Sources */,
 				F25BDE482349A50900D2DD12 /* LabelHeaderViewCollectionReusableView.swift in Sources */,
+				F2B17653234F97A200D174F0 /* Category+CoreDataClass.swift in Sources */,
 				F2649ACB234E41E200C1C971 /* DataManger.swift in Sources */,
-				F25BDE3C234996B800D2DD12 /* Expense+CoreDataClass.swift in Sources */,
 				F25BDDF423491F8700D2DD12 /* CoreDataManager.swift in Sources */,
 				F2A829F8233FD14900CC75AD /* HistoryViewController.swift in Sources */,
 				F269C93E23408F8500894DCD /* ItemPicker.swift in Sources */,
 				F269C936234079B100894DCD /* HistorySectionView.swift in Sources */,
-				F25BDE3E234996B800D2DD12 /* Category+CoreDataClass.swift in Sources */,
-				F25BDE3F234996B800D2DD12 /* Category+CoreDataProperties.swift in Sources */,
-				F25BDE3D234996B800D2DD12 /* Expense+CoreDataProperties.swift in Sources */,
 				F2A829DF233FB79900CC75AD /* SceneDelegate.swift in Sources */,
+				F2B17656234F97A200D174F0 /* Expense+CoreDataProperties.swift in Sources */,
 				F25CEB16234075FA005664BB /* HistoryViewModel.swift in Sources */,
 				F269C9452340B48D00894DCD /* Constants.swift in Sources */,
+				F2B17654234F97A200D174F0 /* Category+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,56 @@
+[{
+    "category" : "Petrol",
+    "note": "Test1",
+    "spend": "50",
+    "timeStamp": "09-10-2019 02:02:39",
+},
+{
+    "category" : "Restorant",
+    "note": "Test1",
+    "spend": "1000",
+    "timeStamp": "09-10-2019 03:02:39",
+},
+{
+    "category" : "Movie",
+    "note": "Test1",
+    "spend": "250",
+    "timeStamp": "10-10-2019 02:02:39",
+},
+{
+    "category" : "Personnel",
+    "note": "Test1",
+    "spend": "150",
+    "timeStamp": "10-10-2019 02:02:39",
+},
+{
+    "category" : "Vegatables",
+    "note": "Test1",
+    "spend": "200",
+    "timeStamp": "10-10-2019 02:02:39",
+},
+{
+    "category" : "Bike",
+    "note": "Test1",
+    "spend": "300",
+    "timeStamp": "11-10-2019 02:02:39",
+},
+{
+    "category" : "Other",
+    "note": "Test1",
+    "spend": "500",
+    "timeStamp": "09-10-2019 02:02:39",
+},
+{
+    "category" : "Bus-fare",
+    "note": "Test Bus-fare",
+    "spend": "100",
+    "timeStamp": "08-10-2019 02:02:39",
+},
+{
+    "category" : "Car",
+    "note": "Test Car",
+    "spend": "500",
+    "timeStamp": "08-10-2019 02:02:39",
+}
+]
+ 

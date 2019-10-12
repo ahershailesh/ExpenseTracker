@@ -11,5 +11,4 @@ import UIKit
 struct HistoryViewModel {
     var dateString : NSAttributedString
     var totalExpense : NSAttributedString
-    var modelArray : [TwoLabelViewModel]
 }

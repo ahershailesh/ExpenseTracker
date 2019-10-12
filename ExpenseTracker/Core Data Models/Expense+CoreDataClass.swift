@@ -2,7 +2,7 @@
 //  Expense+CoreDataClass.swift
 //  ExpenseTracker
 //
-//  Created by Shailesh Aher on 06/10/19.
+//  Created by Shailesh Aher on 10/10/19.
 //  Copyright © 2019 Shailesh Aher. All rights reserved.
 //
 //

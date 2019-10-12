@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class DataManger {
     
@@ -19,11 +20,50 @@ class DataManger {
                 
                 categoryWithTags.keys.forEach { (tagTitle) in
                     let tag = Tag(context: context)
+                    tag.title = tagTitle
                     categoryWithTags[tagTitle]?.forEach({ (categoryTitle) in
                         let category = Category(context: context)
                         category.title = categoryTitle
+                        category.tag = tag
                         tag.categories?.adding(category)
                     })
+                }
+                saveExpense()
+            }
+        }
+    }
+    
+    private static func saveExpense() {
+        var categories = [Category]()
+        let request : NSFetchRequest<Category> = Category.fetchRequest()
+        let titleSortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        request.sortDescriptors = [titleSortDescriptor]
+        do {
+            categories = try CoreDataManager.shared.context.fetch(request)
+        } catch {
+            print("Found error while fetching categories")
+        }
+        
+        let context = CoreDataManager.shared.context
+        if try! context.count(for: Expense.fetchRequest()) == 0 {
+            if let path = Bundle.main.path(forResource: "ExpenseData", ofType: "json"),
+            let data = FileManager.default.contents(atPath: path),
+                let expenseDictArray = try? JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as? [[String: String]] {
+                
+                
+                expenseDictArray.forEach { (dict) in
+                    let dateFormater = DateFormatter()
+                    dateFormater.dateFormat = "dd-mm-yyyy hh:mm:ss"
+                    
+                    let expsense = Expense(context: context)
+                    expsense.category = categories.first { $0.title == dict["category"]  }
+                    if let dateString = dict["timeStamp"] {
+                        expsense.timeStamp = dateFormater.date(from: dateString)
+                    }
+                    expsense.note = dict["note"]
+                    if let spend = dict["spend"] {
+                        expsense.spend = Int16(spend) ?? 0
+                    }
                 }
                 CoreDataManager.shared.save()
             }

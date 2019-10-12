@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
 class HistoryViewController: UIViewController {
     
     @IBOutlet weak var tableView : UITableView!
     var historyArray = [HistoryViewModel]()
+    var historyFRC : NSFetchedResultsController<Expense>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,16 +32,17 @@ class HistoryViewController: UIViewController {
     
     private func prepareData() {
         
-        let leftAttributedString = NSAttributedString(string: "Left content")
-        let rightAttributedString = NSAttributedString(string: "Right content")
-        let array = [TwoLabelViewModel(leftAttributedString: leftAttributedString, rightAttributedString: rightAttributedString, backgroundColor: .red),
-                     TwoLabelViewModel(leftAttributedString: leftAttributedString, rightAttributedString: rightAttributedString, backgroundColor: .blue),
-                     TwoLabelViewModel(leftAttributedString: leftAttributedString, rightAttributedString: rightAttributedString, backgroundColor: .green)]
+        let request : NSFetchRequest<Expense> = Expense.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "timeStamp", ascending: false)]
         
-        let dateString = NSAttributedString(string: "Yesterday")
-        let totalExpense = NSAttributedString(string: "500")
         
-        historyArray = [HistoryViewModel(dateString: dateString, totalExpense: totalExpense, modelArray: array)]
+        historyFRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataManager.shared.context, sectionNameKeyPath: "dateString", cacheName: nil)
+        historyFRC?.delegate = self
+        do {
+            try historyFRC?.performFetch()
+        } catch {
+            
+        }
     }
     
     @objc private func addButtonTapped() {
@@ -58,8 +61,16 @@ extension HistoryViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = HistorySectionView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 44))
-        view.model = historyArray[section]
+        let dateString = historyFRC?.object(at: IndexPath(row: 0, section: section)).dateString ?? ""
+        let expense = historyFRC?.sections?[section].objects?.reduce(0, { (result, element) -> Int in
+            return result + Int((element as? Expense)?.spend ?? 0)
+        }) ?? 0
+        view.model = HistoryViewModel(dateString: NSAttributedString(string: dateString), totalExpense: NSAttributedString(string: "₹ \(expense)"))
         return view
+    }
+  
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return historyFRC?.sections?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -67,13 +78,22 @@ extension HistoryViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return historyArray[section].modelArray.count
+        return historyFRC?.sections?[section].numberOfObjects ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return historyFRC?.object(at: IndexPath(row: 0, section: section)).dateString
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TwoLabelTableViewCell.self), for: indexPath) as? TwoLabelTableViewCell
-        let history = historyArray[indexPath.section]
-        cell?.viewModel = history.modelArray[indexPath.row]
+        if let object = historyFRC?.object(at: indexPath),
+            let categoryTitle = object.category?.title {
+            let leftAttributedString = NSAttributedString(string: categoryTitle)
+            let rightAttributedString = NSAttributedString(string: "₹ \(object.spend)")
+            print(">>>>>>\(object.timeStamp)")
+            cell?.viewModel = TwoLabelViewModel(leftAttributedString: leftAttributedString, rightAttributedString: rightAttributedString, backgroundColor: .red)
+        }
         return cell ?? UITableViewCell()
     }
     
@@ -81,5 +101,9 @@ extension HistoryViewController : UITableViewDataSource {
 }
 
 extension HistoryViewController : UITableViewDelegate {
+    
+}
+
+extension HistoryViewController : NSFetchedResultsControllerDelegate {
     
 }
