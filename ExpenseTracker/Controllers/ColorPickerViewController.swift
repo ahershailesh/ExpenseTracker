@@ -12,13 +12,18 @@ protocol ColorPickerDelegate : class {
     func didSelectedcolor(color: UIColor)
 }
 
+struct ColorViewModel {
+    let color : UIColor
+    var isSelected : Bool
+}
+
 class ColorPickerViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     weak var delegate : ColorPickerDelegate?
     var selectedColor : UIColor?
     var selectedIndexPath : IndexPath?
-    var colors : [UIColor] = []
+    var colorModels : [ColorViewModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +41,9 @@ class ColorPickerViewController: UIViewController {
     }
     
     @objc private func saveButtonTapped() {
-        if let selectedColor = selectedColor {
-            delegate?.didSelectedcolor(color: selectedColor)
+        if let indexPath = selectedIndexPath {
+            let color = colorModels[indexPath.row].color
+            delegate?.didSelectedcolor(color: color)
         }
     }
     
@@ -46,7 +52,8 @@ class ColorPickerViewController: UIViewController {
     }
     
     private func registerCells() {
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: String(describing: UICollectionViewCell.self))
+        collectionView.register(UINib(nibName: "ColorCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: String(describing: ColorCollectionViewCell.self))
+        
         collectionView.register(UINib(nibName: "LabelHeaderViewCollectionReusableView", bundle: nil), forSupplementaryViewOfKind: "UICollectionReusableView", withReuseIdentifier: String(describing: LabelHeaderViewCollectionReusableView.self))
         
     }
@@ -56,14 +63,13 @@ extension ColorPickerViewController : UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return colors.count
+        return colorModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: UICollectionViewCell.self), for: indexPath)
-        cell.layer.cornerRadius = cell.frame.width / 2
-        cell.backgroundColor = colors[indexPath.row]
-        return cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ColorCollectionViewCell.self), for: indexPath) as? ColorCollectionViewCell
+        cell?.model = colorModels[indexPath.row]
+        return cell ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -75,7 +81,15 @@ extension ColorPickerViewController : UICollectionViewDataSource {
 
 extension ColorPickerViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
+        
+        var model = colorModels.remove(at: indexPath.row)
+        model.isSelected = true
+        colorModels.insert(model, at: indexPath.row)
+        if let indexPath = selectedIndexPath {
+            var model = colorModels.remove(at: indexPath.row)
+            model.isSelected = false
+            colorModels.insert(model, at: indexPath.row)
+        }
         selectedIndexPath = indexPath
         collectionView.reloadData()
     }

@@ -25,7 +25,7 @@ class HomeViewController: UIViewController {
     @objc private func addButtonTapped() {
         categoryController = ListingViewController(canShowAddNewItemIfNotMatched: false, delegate: self)
         let navigationController = UINavigationController(rootViewController: categoryController!)
-        categoryController?.contents = categories.compactMap { $0.title }
+//        categoryController?.contents = categories.compactMap { $0.title }
         categoryController?.navigationItem.title = "Choose category"
         present(navigationController, animated: true, completion: nil)
     }

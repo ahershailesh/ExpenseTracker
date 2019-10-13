@@ -30,6 +30,11 @@ class HistoryViewController: UIViewController {
         navigationItem.rightBarButtonItem = addButton
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        prepareData()
+    }
+    
     private func prepareData() {
         
         let request : NSFetchRequest<Expense> = Expense.fetchRequest()
@@ -43,6 +48,7 @@ class HistoryViewController: UIViewController {
         } catch {
             
         }
+        tableView.reloadData()
     }
     
     @objc private func addButtonTapped() {
@@ -65,7 +71,7 @@ extension HistoryViewController : UITableViewDataSource {
         let expense = historyFRC?.sections?[section].objects?.reduce(0, { (result, element) -> Int in
             return result + Int((element as? Expense)?.spend ?? 0)
         }) ?? 0
-        view.model = HistoryViewModel(dateString: NSAttributedString(string: dateString), totalExpense: NSAttributedString(string: "₹ \(expense)"))
+        view.model = HistoryViewModel(dateString: NSAttributedString(string: dateString), totalExpense: NSAttributedString(string: "₹ \(expense)", attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16)]))
         return view
     }
   
@@ -91,8 +97,7 @@ extension HistoryViewController : UITableViewDataSource {
             let categoryTitle = object.category?.title {
             let leftAttributedString = NSAttributedString(string: categoryTitle)
             let rightAttributedString = NSAttributedString(string: "₹ \(object.spend)")
-            print(">>>>>>\(object.timeStamp)")
-            cell?.viewModel = TwoLabelViewModel(leftAttributedString: leftAttributedString, rightAttributedString: rightAttributedString, backgroundColor: .red)
+            cell?.viewModel = TwoLabelViewModel(leftAttributedString: leftAttributedString, rightAttributedString: rightAttributedString, backgroundColor: (object.category?.tag?.color as? UIColor) ?? .white)
         }
         return cell ?? UITableViewCell()
     }

@@ -69,4 +69,28 @@ class DataManger {
             }
         }
     }
+    
+    static func getCategories(with title: String) -> [Category] {
+        let request : NSFetchRequest<Category> = Category.fetchRequest()
+        if !title.isEmpty {
+            request.predicate = NSPredicate(format: "title BEGINSWITH %@", title)
+        }
+        let categories = try? CoreDataManager.shared.context.fetch(request)
+        return categories ?? []
+    }
+    
+    static func getTags(with title: String) -> [Tag] {
+        let request : NSFetchRequest<Tag> = Tag.fetchRequest()
+        if !title.isEmpty {
+            request.predicate = NSPredicate(format: "title BEGINSWITH %@", title)
+        }
+        let tags = try? CoreDataManager.shared.context.fetch(request)
+        return tags ?? []
+    }
+    
+    static func newTag(with title: String) -> Tag {
+        let tag = Tag(context: CoreDataManager.shared.context)
+        tag.title = title
+        return tag
+    }
 }

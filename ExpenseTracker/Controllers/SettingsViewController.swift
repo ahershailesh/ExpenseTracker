@@ -13,12 +13,18 @@ class SettingsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     private let sections : [SettingsConstant] = [.tags]
-    
     var listViewController : ListingViewController?
+    var colorPickerController : ColorPickerViewController?
+    private var selectedTag : Tag?
     
     private var context : NSManagedObjectContext {
         return CoreDataManager.shared.container.viewContext
     }
+    
+    private var attributes : [NSAttributedString.Key : Any] {
+           return [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16),
+                   NSAttributedString.Key.foregroundColor : UIColor.black]
+       }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +54,6 @@ extension SettingsViewController : UITableViewDelegate {
         if let cell = tableView.cellForRow(at: indexPath),
             let title = cell.textLabel?.text,
             let enumValue = SettingsConstant(rawValue: title) {
-            
             switch enumValue {
             case .tags:
                 openTagsController()
@@ -59,18 +64,26 @@ extension SettingsViewController : UITableViewDelegate {
     }
     
     private func openTagsController() {
-        listViewController = ListingViewController()
-        let tags = try? context.fetch(Tag.fetchRequest())
-        listViewController?.contents = tags?.compactMap { return ($0 as AnyObject).title } ?? []
-        listViewController?.delegate = self
-        present(listViewController!, animated: true, completion: nil)
+        listViewController = ListingViewController(canShowAddNewItemIfNotMatched: true, delegate: self)
+        let navigationController = UINavigationController(rootViewController: listViewController!)
+        listViewController?.navigationItem.title = "All Tag"
+        let tags = DataManger.getTags(with: "")
+        listViewController?.contents = tags.compactMap { tag in
+            if let title = tag.title {
+                let item = ListItem(attributedString: NSAttributedString(string: title, attributes: attributes), backgroundColor: tag.color as? UIColor)
+                return item
+            }
+            return nil
+        }
+        present(navigationController, animated: true, completion: nil)
     }
     
-    private func createTags(with name: String) {
-        let createTagController = ColorPickerViewController()
-        let navController = UINavigationController(rootViewController: createTagController)
-        createTagController.title = name
-        createTagController.colors = [.blue, .gray, .green, .brown, .darkGray, .darkText]
+    private func openTag(_ tag: Tag) {
+        colorPickerController = ColorPickerViewController()
+        let navController = UINavigationController(rootViewController: colorPickerController!)
+        colorPickerController?.delegate = self
+        colorPickerController?.title = tag.title
+        colorPickerController?.colorModels = Color.all.map { return ColorViewModel(color: $0, isSelected: false) }
         present(navController, animated: true, completion: nil)
     }
 }
@@ -78,10 +91,24 @@ extension SettingsViewController : UITableViewDelegate {
 extension SettingsViewController : ListingViewControllerDelegate {
     func createNew(_ listItem: String) {
         listViewController?.dismiss(animated: true, completion: nil)
-        createTags(with: listItem)
+        let tag = DataManger.newTag(with: listItem)
+        selectedTag = tag
+        openTag(tag)
     }
     
     func selectedListItem(_ listItem : String) {
         listViewController?.dismiss(animated: true, completion: nil)
+        if let tag = DataManger.getTags(with: listItem).first {
+            selectedTag = tag
+            openTag(tag)
+        }
+    }
+}
+
+extension SettingsViewController : ColorPickerDelegate {
+    func didSelectedcolor(color: UIColor) {
+        selectedTag?.color = color
+        CoreDataManager.shared.save()
+        colorPickerController?.dismiss(animated: true, completion: nil)
     }
 }

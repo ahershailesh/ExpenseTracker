@@ -8,8 +8,9 @@
 
 import UIKit
 
-private struct ListItem {
+struct ListItem {
     var attributedString : NSAttributedString
+    var backgroundColor : UIColor?
 }
 
 private struct SectionListItem {
@@ -24,6 +25,11 @@ protocol ListingViewControllerDelegate : class {
 
 final class ListingViewController: UIViewController {
 
+    enum ListingSection : String {
+        case new = "Create new"
+        case all = "All"
+    }
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
@@ -39,23 +45,16 @@ final class ListingViewController: UIViewController {
                 NSAttributedString.Key.foregroundColor : UIColor.gray]
     }
     
-    enum ListingSection : String {
-        case new = "Create new"
-        case all = "All"
-    }
-    
     private var viewModels : [SectionListItem] = []
     private var searchString : String?
     private var showAddNewItemIfNotMatched = false
     private var isSearchEnabled = false
     private var isSearchMatched = false
     
-    var contents : [String] = [] {
+    var contents : [ListItem] = [] {
         didSet {
             if !contents.isEmpty {
-                let array = contents.map { return ListItem(attributedString: NSAttributedString(string: $0, attributes: attributes))
-                }
-                viewModels = [SectionListItem(items: array, title: NSAttributedString(string: ListingSection.all.rawValue, attributes: sectionHeaderAttribute))]
+                viewModels = [SectionListItem(items: contents, title: NSAttributedString(string: ListingSection.all.rawValue, attributes: sectionHeaderAttribute))]
                 isSearchEnabled = true
             } else {
                 viewModels = [SectionListItem(items: [], title: NSAttributedString(string: "Create new by typing in search box", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray]))]
@@ -80,7 +79,7 @@ final class ListingViewController: UIViewController {
         
         tableView.separatorStyle = .none
         
-//        enableSearchBar(isEnabled: isSearchEnabled)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped(_:)))
     }
     
     private func registerCell() {
@@ -90,12 +89,6 @@ final class ListingViewController: UIViewController {
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
-//    private func enableSearchBar(isEnabled: Bool) {
-//        if !isEnabled {
-//            searchBar.isHidden = true
-//        }
-//    }
 }
 
 extension ListingViewController : UISearchBarDelegate {
@@ -109,20 +102,16 @@ extension ListingViewController : UISearchBarDelegate {
     
     private func filter(with text: String) -> SectionListItem? {
         let items = filterItems(for: text)
-        let allList = getMappedViewModels(from: items)
-        if !allList.isEmpty {
-            return SectionListItem(items: allList, title: NSAttributedString(string: ListingSection.all.rawValue, attributes: sectionHeaderAttribute))
+        if !items.isEmpty {
+            return SectionListItem(items: items, title: NSAttributedString(string: ListingSection.all.rawValue, attributes: sectionHeaderAttribute))
         }
         return nil
     }
     
     private func addCreateSection(with text: String) -> SectionListItem? {
-        
         searchString = text
-        
-        guard !text.isEmpty,
-        !contents.contains(text.trimmingCharacters(in: .whitespaces)),
-        showAddNewItemIfNotMatched else {
+        guard !text.isEmpty, showAddNewItemIfNotMatched,
+            contents.first(where: { $0.attributedString.string == text.trimmingCharacters(in: .whitespaces)}) == nil else {
             return nil
         }
         
@@ -130,16 +119,12 @@ extension ListingViewController : UISearchBarDelegate {
         return SectionListItem(items: newItem, title: NSAttributedString(string: ListingSection.new.rawValue, attributes: sectionHeaderAttribute))
     }
     
-    private func filterItems(for text: String) -> [String] {
+    private func filterItems(for text: String) -> [ListItem] {
         guard !text.isEmpty else { return contents }
         
         return contents.filter { (content) -> Bool in
-            return content.contains(text)
+            return content.attributedString.string.contains(text)
         }
-    }
-    
-    private func getMappedViewModels(from array: [String]) -> [ListItem] {
-        return array.map { return ListItem(attributedString: NSAttributedString(string: $0, attributes: attributes)) }
     }
 }
 
@@ -166,6 +151,7 @@ extension ListingViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self), for: indexPath)
         cell.textLabel?.attributedText = viewModels[indexPath.section].items[indexPath.row].attributedString
+        cell.backgroundColor = viewModels[indexPath.section].items[indexPath.row].backgroundColor
         cell.selectionStyle = .none
         return cell
     }
