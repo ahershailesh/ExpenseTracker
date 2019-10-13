@@ -75,6 +75,7 @@ class DataManger {
         if !title.isEmpty {
             request.predicate = NSPredicate(format: "title BEGINSWITH %@", title)
         }
+        request.sortDescriptors = [NSSortDescriptor(key: "tag", ascending: true)]
         let categories = try? CoreDataManager.shared.context.fetch(request)
         return categories ?? []
     }
@@ -92,5 +93,14 @@ class DataManger {
         let tag = Tag(context: CoreDataManager.shared.context)
         tag.title = title
         return tag
+    }
+    
+    static func addExpense(_ model: ExpenseViewModel) {
+        let expense = Expense(context: CoreDataManager.shared.context)
+        expense.timeStamp = Date()
+        expense.spend = model.expenseAmount ?? 0
+        expense.category = getCategories(with: model.categoryName).first
+        expense.note = model.note
+        CoreDataManager.shared.save()
     }
 }
