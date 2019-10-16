@@ -11,7 +11,7 @@
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category"/>
     </entity>
     <entity name="Tag" representedClassName="Tag" syncable="YES">
-        <attribute name="color" optional="YES" attributeType="Transformable"/>
+        <attribute name="color" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
         <attribute name="title" attributeType="String"/>
         <relationship name="categories" toMany="YES" deletionRule="Cascade" destinationEntity="Category" inverseName="tag" inverseEntity="Category"/>
     </entity>

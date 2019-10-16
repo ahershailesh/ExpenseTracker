@@ -27,37 +27,11 @@ class HomeViewController: UIViewController {
     }
 
     @objc private func addButtonTapped() {
-        categoryController = ListingViewController(canShowAddNewItemIfNotMatched: false, delegate: self)
-        let navigationController = UINavigationController(rootViewController: categoryController!)
-        let categories = DataManger.getCategories(with: "")
-        categoryController?.contents = categories.map({ (category) -> ListItem in
-            let attributedString = NSAttributedString(string: category.title ?? "", attributes: attributes)
-            return ListItem(attributedString: attributedString, backgroundColor: (category.tag?.color as? UIColor) ?? UIColor.white)
-        })
-        categoryController?.navigationItem.title = "Choose category"
-        present(navigationController, animated: true, completion: nil)
-    }
-    
-    private func addExpense(category: Category) {
-        let expenseViewModel = ExpenseViewModel(expenseAmount: nil, note: nil, categoryName: category.title ?? "", categoryTag: category.tag?.title ?? "")
-        
+        let expenseViewModel = ExpenseViewModel(expenseAmount: nil, note: nil, categoryName: "Select", categoryTag: "--", date: Date())
         expenseController = AddExpenseViewController(model: expenseViewModel)
         expenseController?.delegate = self
         expenseController?.navigationItem.title = "Add Expense"
         present(UINavigationController(rootViewController: expenseController!) , animated: true, completion: nil)
-    }
-}
-
-extension HomeViewController : ListingViewControllerDelegate {
-    func createNew(_ listItem: String) {
-        categoryController?.dismiss(animated: true, completion: nil)
-    }
-    
-    func selectedListItem(_ listItem : String) {
-        if let cateogory = DataManger.getCategories(with: listItem).first {
-            categoryController?.dismiss(animated: true, completion: nil)
-            addExpense(category: cateogory)
-        }
     }
 }
 

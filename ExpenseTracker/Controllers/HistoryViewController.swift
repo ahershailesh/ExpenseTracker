@@ -97,7 +97,7 @@ extension HistoryViewController : UITableViewDataSource {
             let categoryTitle = object.category?.title {
             let leftAttributedString = NSAttributedString(string: categoryTitle)
             let rightAttributedString = NSAttributedString(string: "₹ \(object.spend)")
-            cell?.viewModel = TwoLabelViewModel(leftAttributedString: leftAttributedString, rightAttributedString: rightAttributedString, backgroundColor: (object.category?.tag?.color as? UIColor) ?? .white)
+            cell?.viewModel = TwoLabelViewModel(leftAttributedString: leftAttributedString, rightAttributedString: rightAttributedString, backgroundColor: (object.category?.tag?.color as? UIColor) ?? .white, accessoryType: .none)
         }
         return cell ?? UITableViewCell()
     }

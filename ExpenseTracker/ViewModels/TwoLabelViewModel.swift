@@ -12,4 +12,5 @@ struct TwoLabelViewModel {
     var leftAttributedString: NSAttributedString
     var rightAttributedString: NSAttributedString
     var backgroundColor : UIColor
+    var accessoryType : UITableViewCell.AccessoryType
 }
