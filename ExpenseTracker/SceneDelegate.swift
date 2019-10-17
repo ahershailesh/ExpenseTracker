@@ -15,9 +15,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        setupTabbar()
+        
+        let homeViewController = HomeViewController()
+        let navigationController = UINavigationController(rootViewController: homeViewController)
+        
         window = UIWindow(frame: UIScreen.main.bounds)
-        window!.rootViewController = tabBarController
+        window!.rootViewController = navigationController
         window!.makeKeyAndVisible()
         window?.windowScene = windowScene
         

@@ -17,8 +17,15 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        
+        setupNavbar()
+        setupToolbar()
+    }
+    
+     private func setupNavbar() {
+        let addButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = addButton
+        
     }
     
     private var attributes : [NSAttributedString.Key : Any] {
@@ -32,6 +39,26 @@ class HomeViewController: UIViewController {
         expenseController?.delegate = self
         expenseController?.navigationItem.title = "Add Expense"
         present(UINavigationController(rootViewController: expenseController!) , animated: true, completion: nil)
+    }
+    
+    private func setupToolbar() {
+        let toolbar = UIToolbar()
+        let historyButton = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(historyButtonTapped))
+        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        toolbar.items = [spacer, historyButton]
+        view.addSubview(toolbar)
+        
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        
+        toolbar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        toolbar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        toolbar.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: view.safeAreaInsets.bottom).isActive = true
+    }
+    
+    @objc private func historyButtonTapped() {
+        let historyViewController = HistoryViewController()
+        let navigationController = UINavigationController(rootViewController: historyViewController)
+        present(navigationController, animated: true, completion: nil)
     }
 }
 

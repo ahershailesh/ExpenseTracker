@@ -26,7 +26,12 @@ final class AddExpenseViewController : UIViewController {
     private var picker: UIDatePicker?
     private var toolBar : UIToolbar?
     private var listViewController : ListingViewController?
+    
+    private let expenseAmountIndexPath = IndexPath(row: 0, section: 0)
+    private let noteIndexPath = IndexPath(row: 1, section: 0)
+    
     weak var delegate : AddExpenseViewControllerDelegate?
+    
     
     private var attributes : [NSAttributedString.Key : Any] {
         return [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16),
@@ -77,11 +82,28 @@ final class AddExpenseViewController : UIViewController {
     }
     
     @objc private func saveButtonTapped() {
+        
+        guard let cell = tableView.cellForRow(at: expenseAmountIndexPath) as? TextFieldTableViewCell,
+            let spendString = cell.updatedText, let spendAmount = Int16(spendString) else {
+            showAlert(with: "Enter money spent", message: "")
+            return
+        }
+        model?.expenseAmount = spendAmount
+        model?.note = (tableView.cellForRow(at: noteIndexPath) as? TextFieldTableViewCell)?.updatedText
+        
         dismiss(animated: true) { [weak self] in
             if let model = self?.model {
                 self?.delegate?.addExpense(model)
             }
         }
+    }
+    
+    private func showAlert(with title: String, message: String?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+            alertController.dismiss(animated: true, completion: nil)
+        }))
+        present(alertController, animated: true, completion: nil)
     }
     
     private func setupModel(model: ExpenseViewModel?) {

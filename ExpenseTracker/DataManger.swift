@@ -97,7 +97,7 @@ class DataManger {
     
     static func addExpense(_ model: ExpenseViewModel) {
         let expense = Expense(context: CoreDataManager.shared.context)
-        expense.timeStamp = Date()
+        expense.timeStamp = model.date
         expense.spend = model.expenseAmount ?? 0
         expense.category = getCategories(with: model.categoryName).first
         expense.note = model.note
