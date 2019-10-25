@@ -53,7 +53,7 @@ class DataManger {
                 
                 expenseDictArray.forEach { (dict) in
                     let dateFormater = DateFormatter()
-                    dateFormater.dateFormat = "dd-mm-yyyy hh:mm:ss"
+                    dateFormater.dateFormat = "dd-MM-yyyy hh:mm:ss"
                     
                     let expsense = Expense(context: context)
                     expsense.category = categories.first { $0.title == dict["category"]  }
@@ -102,5 +102,22 @@ class DataManger {
         expense.category = getCategories(with: model.categoryName).first
         expense.note = model.note
         CoreDataManager.shared.save()
+    }
+    
+    static func getMonthsExpense() -> [String: Int16] {
+        let request : NSFetchRequest<Expense> = Expense.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "timeStamp", ascending: true)]
+        let expenses = try? CoreDataManager.shared.context.fetch(request)
+        var dictionary = [String: Int16]()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/YYYY"
+        expenses?.forEach({ (expense) in
+            if let date = expense.timeStamp {
+                let dateString = formatter.string(from: date)
+                let amount = dictionary[dateString] ?? 0
+                dictionary[dateString] = amount + expense.spend
+            }
+        })
+        return dictionary
     }
 }

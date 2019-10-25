@@ -10,12 +10,18 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        loadPersistanceStore()
         return true
     }
 
+    private func loadPersistanceStore() {
+        _ = CoreDataManager.shared.container.loadPersistentStores(completionHandler: { (_, _) in
+            DataManger.setupData()
+        })
+
+    }
+    
 }
 

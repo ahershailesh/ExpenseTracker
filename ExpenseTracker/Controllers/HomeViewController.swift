@@ -7,30 +7,61 @@
 //
 
 import UIKit
-import CoreData
+import Charts
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var tableView: UITableView!
+    
     private var categoryController : ListingViewController?
     private var categories : [Category] = []
     private var expenseController : AddExpenseViewController?
+    
+    private var attributes : [NSAttributedString.Key : Any] {
+        return [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16),
+                NSAttributedString.Key.foregroundColor : UIColor.black]
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupNavbar()
         setupToolbar()
+        setupTableView()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+              self.tableView.reloadData()
+        }
     }
     
-     private func setupNavbar() {
-        let addButton = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(addButtonTapped))
+    private func setupTableView() {
+        registerCells()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorStyle = .none
+        tableView.estimatedRowHeight = 100
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: LabelViewCell.self)) as? LabelViewCell
+        cell?.viewModel = LabelViewModel(alignment: .left, text: NSAttributedString(string: "Test"), backgroundColor: .red)
+        cell?.curve = .none
+        cell?.backgroundColor = .clear
+        cell?.layoutIfNeeded()
+        return cell ?? LabelViewCell()
+    }
+    
+    private func setupNavbar() {
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         navigationItem.rightBarButtonItem = addButton
-        
+        navigationItem.title = "Track Expense"
     }
     
-    private var attributes : [NSAttributedString.Key : Any] {
-        return [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16),
-                NSAttributedString.Key.foregroundColor : UIColor.black]
+    private func registerCells() {
+        tableView.register(UINib(nibName: "LabelViewCell", bundle: nil), forCellReuseIdentifier: String(describing: LabelViewCell.self))
     }
 
     @objc private func addButtonTapped() {
@@ -43,7 +74,7 @@ class HomeViewController: UIViewController {
     
     private func setupToolbar() {
         let toolbar = UIToolbar()
-        let historyButton = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(historyButtonTapped))
+        let historyButton = UIBarButtonItem(title: "History", style: .plain, target: self, action: #selector(historyButtonTapped))
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbar.items = [spacer, historyButton]
         view.addSubview(toolbar)
@@ -52,7 +83,9 @@ class HomeViewController: UIViewController {
         
         toolbar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         toolbar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        toolbar.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: view.safeAreaInsets.bottom).isActive = true
+        if let bottom = UIApplication.shared.windows.first?.safeAreaInsets.bottom {
+        toolbar.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -bottom).isActive = true
+        }
     }
     
     @objc private func historyButtonTapped() {
@@ -68,3 +101,60 @@ extension HomeViewController : AddExpenseViewControllerDelegate {
         expenseController?.dismiss(animated: true, completion: nil)
     }
 }
+
+
+//    private func setBarChart(dataPoints: [String], values: [Double]) {
+//        barChartView.noDataText = "You need to provide data for the chart."
+//        var dataEntries: [BarChartDataEntry] = []
+//
+//        for i in 0..<dataPoints.count {
+//            let dataEntry = BarChartDataEntry(x: Double(i), y: values[i])
+//            dataEntries.append(dataEntry)
+//        }
+//
+//        barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dataPoints)
+//
+//
+//        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Total expense")
+//        chartDataSet.stackLabels = dataPoints
+//        let chartData = BarChartData(dataSet: chartDataSet)
+//        barChartView.data = chartData
+//
+//        barChartView.noDataText = ""
+//        barChartView.setVisibleXRangeMaximum(10)
+//        chartDataSet.colors = ChartColorTemplates.colorful()
+//
+//        barChartView.xAxis.labelPosition = .bottom
+//        barChartView.xAxis.granularity = 0
+//
+//        barChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
+//    }
+//
+//    private func setPieChart(dataPoints: [String], values: [Double]) {
+//        pieChartView.noDataText = "You need to provide data for the chart."
+//        var dataEntries: [PieChartDataEntry] = []
+//
+//
+//        for i in 0..<dataPoints.count {
+//            let dataEntry = PieChartDataEntry(value: values[i], label: dataPoints[i])
+//            dataEntries.append(dataEntry)
+//        }
+//
+//        let chartDataSet = PieChartDataSet(entries: dataEntries, label: "Total expense")
+//        let chartData = PieChartData(dataSet: chartDataSet)
+//        pieChartView.data = chartData
+//
+//        pieChartView.noDataText = ""
+//        chartDataSet.colors = ChartColorTemplates.colorful()
+//
+//        pieChartView.animate(xAxisDuration: 2.0, yAxisDuration: 0.0, easingOption: .easeInBounce)
+//    }
+    
+        
+//        let dictionary = DataManger.getMonthsExpense()
+//        let months = dictionary.keys.map { $0 }
+//        let totalExpenses = dictionary.values.map { Double($0) }
+//
+////        setBarChart(dataPoints: months, values: totalExpenses)
+//        setBarChart(dataPoints: ["JAN", "FAB", "MAR", "APR", "MAY", "JUN"], values: [1000, 5000, 1250, 1000, 5000, 1250])
+//        setPieChart(dataPoints: ["JAN", "FAB", "MAR", "APR", "MAY", "JUN"], values: [1000, 5000, 1250, 1000, 5000, 1250])

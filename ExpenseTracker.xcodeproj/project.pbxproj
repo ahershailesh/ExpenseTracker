@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F4BD024E9FBE17BD5B78DBF /* Pods_ExpenseTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24777E4C00A68F4CCA26EF70 /* Pods_ExpenseTracker.framework */; };
 		F25BDDF423491F8700D2DD12 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F25BDDF323491F8700D2DD12 /* CoreDataManager.swift */; };
 		F25BDE192349247500D2DD12 /* ExpenseTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F25BDE0A234922E100D2DD12 /* ExpenseTracker.xcdatamodeld */; };
 		F25BDE4323499CAD00D2DD12 /* ColorPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F25BDE4123499CAD00D2DD12 /* ColorPickerViewController.xib */; };
@@ -41,6 +42,8 @@
 		F2A8BD0F233FD450002C7BAF /* TwoLabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A8BD0D233FD450002C7BAF /* TwoLabelTableViewCell.swift */; };
 		F2A8BD10233FD450002C7BAF /* TwoLabelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A8BD0E233FD450002C7BAF /* TwoLabelTableViewCell.xib */; };
 		F2A8BD12233FD4F3002C7BAF /* TwoLabelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A8BD11233FD4F3002C7BAF /* TwoLabelViewModel.swift */; };
+		F2AD9E87235DFA9A00FE7655 /* LabelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AD9E85235DFA9A00FE7655 /* LabelViewCell.swift */; };
+		F2AD9E88235DFA9A00FE7655 /* LabelViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2AD9E86235DFA9A00FE7655 /* LabelViewCell.xib */; };
 		F2B17653234F97A200D174F0 /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B1764D234F97A200D174F0 /* Category+CoreDataClass.swift */; };
 		F2B17654234F97A200D174F0 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B1764E234F97A200D174F0 /* Category+CoreDataProperties.swift */; };
 		F2B17655234F97A200D174F0 /* Expense+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2B1764F234F97A200D174F0 /* Expense+CoreDataClass.swift */; };
@@ -55,6 +58,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		24777E4C00A68F4CCA26EF70 /* Pods_ExpenseTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpenseTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B90D2A86A6E1FC5DBAC6868 /* Pods-ExpenseTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpenseTracker.debug.xcconfig"; path = "Target Support Files/Pods-ExpenseTracker/Pods-ExpenseTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		9EDAC7461344EB47D676D1E5 /* Pods-ExpenseTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpenseTracker.release.xcconfig"; path = "Target Support Files/Pods-ExpenseTracker/Pods-ExpenseTracker.release.xcconfig"; sourceTree = "<group>"; };
 		F24662C5233FE4ED00AD4FA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F25BDDF323491F8700D2DD12 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		F25BDE0B234922E100D2DD12 /* ExpenseTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExpenseTracker.xcdatamodel; sourceTree = "<group>"; };
@@ -91,6 +97,8 @@
 		F2A8BD0D233FD450002C7BAF /* TwoLabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoLabelTableViewCell.swift; sourceTree = "<group>"; };
 		F2A8BD0E233FD450002C7BAF /* TwoLabelTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TwoLabelTableViewCell.xib; sourceTree = "<group>"; };
 		F2A8BD11233FD4F3002C7BAF /* TwoLabelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoLabelViewModel.swift; sourceTree = "<group>"; };
+		F2AD9E85235DFA9A00FE7655 /* LabelViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelViewCell.swift; sourceTree = "<group>"; };
+		F2AD9E86235DFA9A00FE7655 /* LabelViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelViewCell.xib; sourceTree = "<group>"; };
 		F2B1764D234F97A200D174F0 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F2B1764E234F97A200D174F0 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F2B1764F234F97A200D174F0 /* Expense+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Expense+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -109,12 +117,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F4BD024E9FBE17BD5B78DBF /* Pods_ExpenseTracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E99126BF6ED9F487DC9DB6CF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24777E4C00A68F4CCA26EF70 /* Pods_ExpenseTracker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EC0633DC7313BD1F22F35659 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9B90D2A86A6E1FC5DBAC6868 /* Pods-ExpenseTracker.debug.xcconfig */,
+				9EDAC7461344EB47D676D1E5 /* Pods-ExpenseTracker.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		F25BDDE623491F1800D2DD12 /* Core Data Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +167,8 @@
 			children = (
 				F2A829DB233FB79900CC75AD /* ExpenseTracker */,
 				F2A829DA233FB79900CC75AD /* Products */,
+				EC0633DC7313BD1F22F35659 /* Pods */,
+				E99126BF6ED9F487DC9DB6CF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -211,6 +239,8 @@
 				F26598F9235575C800294933 /* TextFieldTableViewCell.swift */,
 				F26598FA235575C800294933 /* TextFieldTableViewCell.xib */,
 				F28DFFCC2356CA0B000C039D /* DatePicker.swift */,
+				F2AD9E85235DFA9A00FE7655 /* LabelViewCell.swift */,
+				F2AD9E86235DFA9A00FE7655 /* LabelViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -239,9 +269,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F2A829ED233FB79E00CC75AD /* Build configuration list for PBXNativeTarget "ExpenseTracker" */;
 			buildPhases = (
+				60434945B15D0DFF3ED98BAA /* [CP] Check Pods Manifest.lock */,
 				F2A829D5233FB79900CC75AD /* Sources */,
 				F2A829D6233FB79900CC75AD /* Frameworks */,
 				F2A829D7233FB79900CC75AD /* Resources */,
+				C4BE4805DD666630222119DE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -301,6 +333,7 @@
 				F2ECC5B42352CAC80092982F /* ColorCollectionViewCell.xib in Resources */,
 				F2A8BD10233FD450002C7BAF /* TwoLabelTableViewCell.xib in Resources */,
 				F25BDE4323499CAD00D2DD12 /* ColorPickerViewController.xib in Resources */,
+				F2AD9E88235DFA9A00FE7655 /* LabelViewCell.xib in Resources */,
 				F2649ACD234E423800C1C971 /* DefaultData.json in Resources */,
 				F269C9412340AFEC00894DCD /* SettingsViewController.xib in Resources */,
 				F25BDE492349A50900D2DD12 /* LabelHeaderViewCollectionReusableView.xib in Resources */,
@@ -310,6 +343,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		60434945B15D0DFF3ED98BAA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ExpenseTracker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C4BE4805DD666630222119DE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ExpenseTracker/Pods-ExpenseTracker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ExpenseTracker/Pods-ExpenseTracker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ExpenseTracker/Pods-ExpenseTracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F2A829D5233FB79900CC75AD /* Sources */ = {
@@ -323,6 +398,7 @@
 				F25BDE192349247500D2DD12 /* ExpenseTracker.xcdatamodeld in Sources */,
 				F269C9422340AFEC00894DCD /* SettingsViewController.swift in Sources */,
 				F2A8BD12233FD4F3002C7BAF /* TwoLabelViewModel.swift in Sources */,
+				F2AD9E87235DFA9A00FE7655 /* LabelViewCell.swift in Sources */,
 				F2A8BD0F233FD450002C7BAF /* TwoLabelTableViewCell.swift in Sources */,
 				F25BDE4B2349A99900D2DD12 /* ColorPickerViewController.swift in Sources */,
 				F269C93B234088ED00894DCD /* AddExpenseViewController.swift in Sources */,
@@ -478,6 +554,7 @@
 		};
 		F2A829EE233FB79E00CC75AD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B90D2A86A6E1FC5DBAC6868 /* Pods-ExpenseTracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -496,6 +573,7 @@
 		};
 		F2A829EF233FB79E00CC75AD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9EDAC7461344EB47D676D1E5 /* Pods-ExpenseTracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
