@@ -35,8 +35,8 @@
 		F2A829DD233FB79900CC75AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A829DC233FB79900CC75AD /* AppDelegate.swift */; };
 		F2A829DF233FB79900CC75AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A829DE233FB79900CC75AD /* SceneDelegate.swift */; };
 		F2A829E9233FB79E00CC75AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2A829E7233FB79E00CC75AD /* LaunchScreen.storyboard */; };
-		F2A829F4233FD0ED00CC75AD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A829F2233FD0ED00CC75AD /* HomeViewController.swift */; };
-		F2A829F5233FD0ED00CC75AD /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A829F3233FD0ED00CC75AD /* HomeViewController.xib */; };
+		F2A829F4233FD0ED00CC75AD /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A829F2233FD0ED00CC75AD /* CardViewController.swift */; };
+		F2A829F5233FD0ED00CC75AD /* CardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A829F3233FD0ED00CC75AD /* CardViewController.xib */; };
 		F2A829F8233FD14900CC75AD /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A829F6233FD14900CC75AD /* HistoryViewController.swift */; };
 		F2A829F9233FD14900CC75AD /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2A829F7233FD14900CC75AD /* HistoryViewController.xib */; };
 		F2A8BD0F233FD450002C7BAF /* TwoLabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A8BD0D233FD450002C7BAF /* TwoLabelTableViewCell.swift */; };
@@ -51,7 +51,12 @@
 		F2C2F9DF23535DF60068ED61 /* Tag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C2F9DD23535DF60068ED61 /* Tag+CoreDataClass.swift */; };
 		F2C2F9E023535DF60068ED61 /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C2F9DE23535DF60068ED61 /* Tag+CoreDataProperties.swift */; };
 		F2C7EFB82348E1F30032AA41 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C7EFB72348E1F30032AA41 /* Global.swift */; };
+		F2CE84162365614600EC3F57 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CE84152365614600EC3F57 /* Strings.swift */; };
+		F2CE841923656A0500EC3F57 /* ButtonViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CE841723656A0500EC3F57 /* ButtonViewCell.swift */; };
+		F2CE841A23656A0500EC3F57 /* ButtonViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2CE841823656A0500EC3F57 /* ButtonViewCell.xib */; };
+		F2CE841C23670B1100EC3F57 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CE841B23670B1100EC3F57 /* Button.swift */; };
 		F2D04F1723503197009EB085 /* ExpenseData.json in Resources */ = {isa = PBXBuildFile; fileRef = F2D04F1623503197009EB085 /* ExpenseData.json */; };
+		F2D04F86236CA0A300524535 /* HomeViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D04F85236CA0A300524535 /* HomeViewManager.swift */; };
 		F2ECC5B32352CAC80092982F /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECC5B12352CAC80092982F /* ColorCollectionViewCell.swift */; };
 		F2ECC5B42352CAC80092982F /* ColorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2ECC5B22352CAC80092982F /* ColorCollectionViewCell.xib */; };
 		F2F9E5B9235230E400CD971E /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2F9E5B8235230E300CD971E /* Color.xcassets */; };
@@ -90,8 +95,8 @@
 		F2A829DE233FB79900CC75AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F2A829E8233FB79E00CC75AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F2A829EA233FB79E00CC75AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F2A829F2233FD0ED00CC75AD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		F2A829F3233FD0ED00CC75AD /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		F2A829F2233FD0ED00CC75AD /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		F2A829F3233FD0ED00CC75AD /* CardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardViewController.xib; sourceTree = "<group>"; };
 		F2A829F6233FD14900CC75AD /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		F2A829F7233FD14900CC75AD /* HistoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
 		F2A8BD0D233FD450002C7BAF /* TwoLabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoLabelTableViewCell.swift; sourceTree = "<group>"; };
@@ -106,7 +111,12 @@
 		F2C2F9DD23535DF60068ED61 /* Tag+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F2C2F9DE23535DF60068ED61 /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F2C7EFB72348E1F30032AA41 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		F2CE84152365614600EC3F57 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		F2CE841723656A0500EC3F57 /* ButtonViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewCell.swift; sourceTree = "<group>"; };
+		F2CE841823656A0500EC3F57 /* ButtonViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonViewCell.xib; sourceTree = "<group>"; };
+		F2CE841B23670B1100EC3F57 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		F2D04F1623503197009EB085 /* ExpenseData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ExpenseData.json; sourceTree = "<group>"; };
+		F2D04F85236CA0A300524535 /* HomeViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewManager.swift; sourceTree = "<group>"; };
 		F2ECC5B12352CAC80092982F /* ColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollectionViewCell.swift; sourceTree = "<group>"; };
 		F2ECC5B22352CAC80092982F /* ColorCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCollectionViewCell.xib; sourceTree = "<group>"; };
 		F2F9E5B8235230E300CD971E /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
@@ -200,6 +210,7 @@
 				F2649ACC234E423800C1C971 /* DefaultData.json */,
 				F2D04F1623503197009EB085 /* ExpenseData.json */,
 				F2F9E5B8235230E300CD971E /* Color.xcassets */,
+				F2D04F85236CA0A300524535 /* HomeViewManager.swift */,
 			);
 			path = ExpenseTracker;
 			sourceTree = "<group>";
@@ -215,8 +226,8 @@
 				F269C93F2340AFEC00894DCD /* SettingsViewController.xib */,
 				F269C939234088ED00894DCD /* AddExpenseViewController.swift */,
 				F269C93A234088ED00894DCD /* AddExpenseViewController.xib */,
-				F2A829F2233FD0ED00CC75AD /* HomeViewController.swift */,
-				F2A829F3233FD0ED00CC75AD /* HomeViewController.xib */,
+				F2A829F2233FD0ED00CC75AD /* CardViewController.swift */,
+				F2A829F3233FD0ED00CC75AD /* CardViewController.xib */,
 				F2A829F6233FD14900CC75AD /* HistoryViewController.swift */,
 				F2A829F7233FD14900CC75AD /* HistoryViewController.xib */,
 				F25BDE4A2349A99900D2DD12 /* ColorPickerViewController.swift */,
@@ -241,6 +252,9 @@
 				F28DFFCC2356CA0B000C039D /* DatePicker.swift */,
 				F2AD9E85235DFA9A00FE7655 /* LabelViewCell.swift */,
 				F2AD9E86235DFA9A00FE7655 /* LabelViewCell.xib */,
+				F2CE841723656A0500EC3F57 /* ButtonViewCell.swift */,
+				F2CE841823656A0500EC3F57 /* ButtonViewCell.xib */,
+				F2CE841B23670B1100EC3F57 /* Button.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -258,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				F2C7EFB72348E1F30032AA41 /* Global.swift */,
+				F2CE84152365614600EC3F57 /* Strings.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -325,7 +340,7 @@
 				F2A829E9233FB79E00CC75AD /* LaunchScreen.storyboard in Resources */,
 				F269C93C234088ED00894DCD /* AddExpenseViewController.xib in Resources */,
 				F2F9E5B9235230E400CD971E /* Color.xcassets in Resources */,
-				F2A829F5233FD0ED00CC75AD /* HomeViewController.xib in Resources */,
+				F2A829F5233FD0ED00CC75AD /* CardViewController.xib in Resources */,
 				F269C9482342681100894DCD /* ListingViewController.xib in Resources */,
 				F26598F62355757400294933 /* ExpenseViewController.xib in Resources */,
 				F2A829F9233FD14900CC75AD /* HistoryViewController.xib in Resources */,
@@ -334,6 +349,7 @@
 				F2A8BD10233FD450002C7BAF /* TwoLabelTableViewCell.xib in Resources */,
 				F25BDE4323499CAD00D2DD12 /* ColorPickerViewController.xib in Resources */,
 				F2AD9E88235DFA9A00FE7655 /* LabelViewCell.xib in Resources */,
+				F2CE841A23656A0500EC3F57 /* ButtonViewCell.xib in Resources */,
 				F2649ACD234E423800C1C971 /* DefaultData.json in Resources */,
 				F269C9412340AFEC00894DCD /* SettingsViewController.xib in Resources */,
 				F25BDE492349A50900D2DD12 /* LabelHeaderViewCollectionReusableView.xib in Resources */,
@@ -393,7 +409,8 @@
 			files = (
 				F2C2F9E023535DF60068ED61 /* Tag+CoreDataProperties.swift in Sources */,
 				F2C2F9DF23535DF60068ED61 /* Tag+CoreDataClass.swift in Sources */,
-				F2A829F4233FD0ED00CC75AD /* HomeViewController.swift in Sources */,
+				F2D04F86236CA0A300524535 /* HomeViewManager.swift in Sources */,
+				F2A829F4233FD0ED00CC75AD /* CardViewController.swift in Sources */,
 				F2A829DD233FB79900CC75AD /* AppDelegate.swift in Sources */,
 				F25BDE192349247500D2DD12 /* ExpenseTracker.xcdatamodeld in Sources */,
 				F269C9422340AFEC00894DCD /* SettingsViewController.swift in Sources */,
@@ -409,6 +426,7 @@
 				F25BDE482349A50900D2DD12 /* LabelHeaderViewCollectionReusableView.swift in Sources */,
 				F2ECC5B32352CAC80092982F /* ColorCollectionViewCell.swift in Sources */,
 				F2B17653234F97A200D174F0 /* Category+CoreDataClass.swift in Sources */,
+				F2CE84162365614600EC3F57 /* Strings.swift in Sources */,
 				F2649ACB234E41E200C1C971 /* DataManger.swift in Sources */,
 				F25BDDF423491F8700D2DD12 /* CoreDataManager.swift in Sources */,
 				F2A829F8233FD14900CC75AD /* HistoryViewController.swift in Sources */,
@@ -418,9 +436,11 @@
 				F2A829DF233FB79900CC75AD /* SceneDelegate.swift in Sources */,
 				F26598FB235575C800294933 /* TextFieldTableViewCell.swift in Sources */,
 				F2B17656234F97A200D174F0 /* Expense+CoreDataProperties.swift in Sources */,
+				F2CE841923656A0500EC3F57 /* ButtonViewCell.swift in Sources */,
 				F25CEB16234075FA005664BB /* HistoryViewModel.swift in Sources */,
 				F269C9452340B48D00894DCD /* Constants.swift in Sources */,
 				F2B17654234F97A200D174F0 /* Category+CoreDataProperties.swift in Sources */,
+				F2CE841C23670B1100EC3F57 /* Button.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

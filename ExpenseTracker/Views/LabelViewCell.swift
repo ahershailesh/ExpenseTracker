@@ -14,10 +14,12 @@ enum Curve : CardViewType {
     case top(radius: CGFloat, margin: CGFloat), bottom(radius: CGFloat, margin: CGFloat), both(radius: CGFloat,  margin: CGFloat), none
 }
 
-struct LabelViewModel {
+struct LabelViewModel : ViewModel {
     var alignment : NSTextAlignment
     var text : NSAttributedString
     var backgroundColor : UIColor
+    
+    var curve : Curve
 }
 
 //protocol CardView {
@@ -38,20 +40,18 @@ struct LabelViewModel {
 //    }
 //}
 
-class LabelViewCell: UITableViewCell {
+class LabelViewCell: UITableViewCell, BaseTableViewProtocol {
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var containerView: UIView!
-    
     @IBOutlet weak var topContainerConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomContainerConstraint: NSLayoutConstraint!
     
-    
-    var viewModel : LabelViewModel? {
-        didSet {
-            setupModel(model: viewModel)
-        }
-    }
+    var viewModel: LabelViewModel? {
+           didSet {
+               setupModel(model: viewModel)
+           }
+       }
     
     var curve : Curve = .none {
         didSet {
@@ -59,8 +59,10 @@ class LabelViewCell: UITableViewCell {
             case .top(let radius, let margin):
                 containerView.roundCorners(corners: [.topLeft, .topRight], radius: radius)
                 topContainerConstraint.constant = margin
+                bottomContainerConstraint.constant = 0
             case .bottom(let radius, let margin):
                 containerView.roundCorners(corners: [.bottomLeft, .bottomRight], radius: radius)
+                topContainerConstraint.constant = 0
                 bottomContainerConstraint.constant = margin
             case .both(let radius, let margin):
                 containerView.roundCorners(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: radius)
@@ -84,6 +86,8 @@ class LabelViewCell: UITableViewCell {
             label.textAlignment = model.alignment
             label.attributedText = model.text
             containerView.backgroundColor = model.backgroundColor
+            curve = model.curve
+            backgroundColor = .clear
         } else {
             cleanCell()
         }
@@ -92,16 +96,5 @@ class LabelViewCell: UITableViewCell {
     private func cleanCell() {
         label.textAlignment = .left
         label.attributedText = nil
-    }
-    
-   
-}
-
-extension UIView {
-   func roundCorners(corners: UIRectCorner, radius: CGFloat) {
-        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        layer.mask = mask
     }
 }

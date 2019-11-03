@@ -8,42 +8,51 @@
 
 import UIKit
 
-//extension UIView {
-//
-//    @IBInspectable var borderWidth: CGFloat {
-//        set {
-//            self.layer.borderWidth = newValue
-//        }
-//        get {
-//            return self.layer.borderWidth
-//        }
-//    }
-//    
-//    @IBInspectable var cornerRadius: CGFloat {
-//        set {
-//            self.layer.cornerRadius = newValue
-//        }
-//        get {
-//            return self.layer.cornerRadius
-//        }
-//    }
-//    
-//    @IBInspectable var borderColor: UIColor {
-//        set {
-//            self.layer.borderColor = newValue.cgColor
-//        }
-//        get {
-//            return UIColor.black
-//        }
-//    }
-//}
-//
-//@IBDesignable class RoundImageView: UIImageView {
-//    
-//  override func prepareForInterfaceBuilder() {
-//    self.layer.cornerRadius = self.bounds.size.width/2
-//    self.layer.borderWidth = 6
-//    self.layer.borderColor = UIColor.black.cgColor
-//    self.layer.masksToBounds = true
-//  }
-//}
+protocol ViewModel {}
+
+protocol BaseTableViewProtocol {
+    associatedtype ViewModelType
+    
+    var viewModel : ViewModelType? { get set }
+}
+
+extension UITableView {
+    
+    func dequeue<T : UITableViewCell>() -> T? {
+        return self.dequeueReusableCell(withIdentifier: String(describing: T.self)) as? T
+    }
+}
+
+extension UIView {
+   func roundCorners(corners: UIRectCorner, radius: CGFloat) {
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        layer.mask = mask
+    }
+}
+
+enum CellType {
+    case label(viewModel: LabelViewModel)
+    case button(viewModel: ButtonViewModel)
+    
+    func register(for tableView: UITableView) {
+        switch self {
+        case .label( _) : tableView.register(UINib(nibName: "LabelViewCell", bundle: nil), forCellReuseIdentifier: String(describing: LabelViewCell.self))
+        case .button( _) : tableView.register(UINib(nibName: "ButtonViewCell", bundle: nil), forCellReuseIdentifier: String(describing: ButtonViewCell.self))
+        }
+    }
+    
+    func getCell(tableView: UITableView) -> UITableViewCell? {
+        switch self {
+        case .label(let viewModel):
+            let cell : LabelViewCell? = tableView.dequeue()
+            cell?.viewModel = viewModel
+            return cell
+        case .button(let viewModel):
+            let cell : ButtonViewCell? = tableView.dequeue()
+            cell?.viewModel = viewModel
+            return cell
+        }
+    }
+}

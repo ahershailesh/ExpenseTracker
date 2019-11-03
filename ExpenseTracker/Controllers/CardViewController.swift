@@ -15,22 +15,44 @@ class CardViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     private var categoryController : ListingViewController?
     private var expenseController : AddExpenseViewController?
-    
-    var cellTypes = [CellType]()
+    private var cardProtocol : CardProtocol
+    private var cellTypes : [CellType] = []
     
     private var attributes : [NSAttributedString.Key : Any] {
         return [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16),
                 NSAttributedString.Key.foregroundColor : UIColor.black]
     }
     
+    init(cardProtocol: CardProtocol) {
+        self.cardProtocol = cardProtocol
+        super.init(nibName: nil, bundle: nil)
+        self.cardProtocol.presenter = self
+    }
+    
+    required init?(coder: NSCoder) {
+        self.cardProtocol = HomeViewManager()
+        super.init(coder: coder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCards()
         setupNavbar()
         setupToolbar()
         setupTableView()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
               self.tableView.reloadData()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupCards()
+    }
+    
+    private func setupCards() {
+        cellTypes = cardProtocol.getCards()
+        tableView.reloadData()
     }
     
     private func setupTableView() {
@@ -100,6 +122,15 @@ extension CardViewController : AddExpenseViewControllerDelegate {
     }
 }
 
+extension CardViewController : PresentationProtocol {
+    func refresh() {
+        setupCards()
+    }
+    
+    func present(controller: UIViewController, animated: Bool) {
+        present(controller, animated: animated)
+    }
+}
 
 //    private func setBarChart(dataPoints: [String], values: [Double]) {
 //        barChartView.noDataText = "You need to provide data for the chart."

@@ -120,4 +120,52 @@ class DataManger {
         })
         return dictionary
     }
+    
+    static func getTotalExpense(ofMonth month: Int, andYear year: Int) -> Int {
+        var components = DateComponents()
+        components.month = month
+        components.year = year
+        
+        let startDate = Calendar.current.date(from: components)
+        
+        components.year = 0
+        components.month = 1
+        components.day = -1
+        
+        let endDate = Calendar.current.date(byAdding: components, to: startDate!)
+        
+        let expenses = getExpenseBetween(date1: startDate!, date2: endDate!)
+        let totalExpense = expenses.reduce(0, { (result, expense) -> Int in
+            return result + Int(expense.spend)
+        })
+        return totalExpense
+    }
+    
+    static func getExpenseBetween(date1: Date, date2: Date) -> [Expense] {
+        let firstDate = date1 < date2 ? date1 : date2
+        let secondDate = date2 > date1  ? date2 : date1
+        
+        let request : NSFetchRequest<Expense> = Expense.fetchRequest()
+        let predicate = NSPredicate(format: "%K >= %@ && %K <= %@", "timeStamp", firstDate as NSDate, "timeStamp", secondDate as NSDate)
+        request.predicate = predicate
+        let expenses = try? CoreDataManager.shared.context.fetch(request)
+        return expenses ?? []
+    }
+    
+    static func getTodaysExpenses() -> [Expense] {
+        let request : NSFetchRequest<Expense> = Expense.fetchRequest()
+        let timeInterval = -(Int(Date().timeIntervalSince1970) % 86400)
+        let predicate = NSPredicate(format: "timeStamp >= %@", NSDate(timeIntervalSinceNow: TimeInterval(timeInterval)))
+        request.predicate = predicate
+        let expenses = try? CoreDataManager.shared.context.fetch(request)
+        return expenses ?? []
+    }
+    
+    static func getLastUpdatedTimeStamp() -> Date? {
+        let request : NSFetchRequest<Expense> = Expense.fetchRequest()
+        request.sortDescriptors = [NSSortDescriptor(key: "timeStamp", ascending: false)]
+        request.fetchLimit = 1
+        let expenses = try? CoreDataManager.shared.context.fetch(request)
+        return expenses?.first?.timeStamp
+    }
 }

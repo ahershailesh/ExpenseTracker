@@ -23,12 +23,11 @@ extension Expense {
     @NSManaged public var category: Category?
     
     @objc var dateString : String {
-           let formatter = DateFormatter()
-           formatter.dateFormat = "dd MMMM YYYY"
-           if let timeStamp = timeStamp {
-               return formatter.string(from: timeStamp)
-           }
-           return ""
-       }
-
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMMM YYYY"
+        if let timeStamp = timeStamp {
+            return formatter.string(from: timeStamp)
+        }
+        return ""
+    }
 }

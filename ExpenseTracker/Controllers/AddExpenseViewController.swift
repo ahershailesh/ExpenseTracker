@@ -26,6 +26,7 @@ final class AddExpenseViewController : UIViewController {
     private var picker: UIDatePicker?
     private var toolBar : UIToolbar?
     private var listViewController : ListingViewController?
+    private var placeHolderCategoryName = "Select"
     
     private let expenseAmountIndexPath = IndexPath(row: 0, section: 0)
     private let noteIndexPath = IndexPath(row: 1, section: 0)
@@ -88,6 +89,11 @@ final class AddExpenseViewController : UIViewController {
             showAlert(with: "Enter money spent", message: "")
             return
         }
+        
+        guard let categoryName = model?.categoryName, categoryName != placeHolderCategoryName else {
+            showAlert(with: "Please select Category", message: "")
+            return
+        }
         model?.expenseAmount = spendAmount
         model?.note = (tableView.cellForRow(at: noteIndexPath) as? TextFieldTableViewCell)?.updatedText
         
@@ -123,7 +129,7 @@ final class AddExpenseViewController : UIViewController {
         let titleAttribute = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 15, weight: .medium)]
         
         let details = [("Date", titleAttribute, dateString, lightAttributes, UITableViewCell.AccessoryType.none),
-                       ("Category", titleAttribute, model?.categoryName ?? "Select", lightAttributes, UITableViewCell.AccessoryType.disclosureIndicator),
+                       ("Category", titleAttribute, model?.categoryName ?? placeHolderCategoryName, lightAttributes, UITableViewCell.AccessoryType.disclosureIndicator),
                        ("Tag", titleAttribute, model?.categoryTag ?? "--", lightAttributes, UITableViewCell.AccessoryType.none)]
         
         labelModels = details.map { title, titleAttribute, subTitle, subTitleAttribute, type  in
@@ -220,11 +226,22 @@ extension AddExpenseViewController : UITableViewDataSource {
     }
     
     private func showCategories() {
-        
+        listViewController = ListingViewController(canShowAddNewItemIfNotMatched: false, delegate: self)
+        let navigationController = UINavigationController(rootViewController: listViewController!)
+        listViewController?.navigationItem.title = "Select Categories"
+        let categories = DataManger.getCategories(with: "")
+        listViewController?.contents = categories.compactMap { category in
+            if let title = category.title {
+                let item = ListItem(attributedString: NSAttributedString(string: title, attributes: attributes), backgroundColor: category.tag?.color as? UIColor)
+                return item
+            }
+            return nil
+        }
+        listViewController?.delegate = self
+        present(navigationController, animated: true, completion: nil)
     }
     
     @objc func doneButtonTapped() {
-        
         if let date = picker?.date {
             model?.date = date
         }
@@ -242,18 +259,7 @@ extension AddExpenseViewController : UITableViewDelegate {
         case (1, 0):
             showDatePicker()
         case (1, 1):
-            listViewController = ListingViewController(canShowAddNewItemIfNotMatched: false, delegate: self)
-            let navigationController = UINavigationController(rootViewController: listViewController!)
-            listViewController?.navigationItem.title = "Select Categories"
-            let categories = DataManger.getCategories(with: "")
-            listViewController?.contents = categories.compactMap { category in
-                if let title = category.title {
-                    let item = ListItem(attributedString: NSAttributedString(string: title, attributes: attributes), backgroundColor: category.tag?.color as? UIColor)
-                    return item
-                }
-                return nil
-            }
-            present(navigationController, animated: true, completion: nil)
+            showCategories()
         default:
             break
         }
@@ -269,6 +275,9 @@ extension AddExpenseViewController : ListingViewControllerDelegate {
     }
     
     func createNew(_ listItem: String) {
-        
+        model?.categoryName = listItem
+        model?.categoryTag = DataManger.getCategories(with: listItem).first?.tag?.title ?? "--"
+        listViewController?.dismiss(animated: true, completion: nil)
+        setupModel(model: model)
     }
 }
