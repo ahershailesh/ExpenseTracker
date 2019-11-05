@@ -44,12 +44,7 @@ class CardViewController: UIViewController, UITableViewDataSource, UITableViewDe
               self.tableView.reloadData()
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupCards()
-    }
-    
+
     private func setupCards() {
         cellTypes = cardProtocol.getCards()
         tableView.reloadData()
@@ -119,6 +114,7 @@ extension CardViewController : AddExpenseViewControllerDelegate {
     func addExpense(_ expenseModel: ExpenseViewModel) {
         DataManger.addExpense(expenseModel)
         expenseController?.dismiss(animated: true, completion: nil)
+        refresh()
     }
 }
 
@@ -132,33 +128,6 @@ extension CardViewController : PresentationProtocol {
     }
 }
 
-//    private func setBarChart(dataPoints: [String], values: [Double]) {
-//        barChartView.noDataText = "You need to provide data for the chart."
-//        var dataEntries: [BarChartDataEntry] = []
-//
-//        for i in 0..<dataPoints.count {
-//            let dataEntry = BarChartDataEntry(x: Double(i), y: values[i])
-//            dataEntries.append(dataEntry)
-//        }
-//
-//        barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values:dataPoints)
-//
-//
-//        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Total expense")
-//        chartDataSet.stackLabels = dataPoints
-//        let chartData = BarChartData(dataSet: chartDataSet)
-//        barChartView.data = chartData
-//
-//        barChartView.noDataText = ""
-//        barChartView.setVisibleXRangeMaximum(10)
-//        chartDataSet.colors = ChartColorTemplates.colorful()
-//
-//        barChartView.xAxis.labelPosition = .bottom
-//        barChartView.xAxis.granularity = 0
-//
-//        barChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
-//    }
-//
 //    private func setPieChart(dataPoints: [String], values: [Double]) {
 //        pieChartView.noDataText = "You need to provide data for the chart."
 //        var dataEntries: [PieChartDataEntry] = []

@@ -35,11 +35,13 @@ extension UIView {
 enum CellType {
     case label(viewModel: LabelViewModel)
     case button(viewModel: ButtonViewModel)
+    case barChart(viewModel: ChartViewModel)
     
     func register(for tableView: UITableView) {
         switch self {
         case .label( _) : tableView.register(UINib(nibName: "LabelViewCell", bundle: nil), forCellReuseIdentifier: String(describing: LabelViewCell.self))
         case .button( _) : tableView.register(UINib(nibName: "ButtonViewCell", bundle: nil), forCellReuseIdentifier: String(describing: ButtonViewCell.self))
+        case .barChart(_): tableView.register(UINib(nibName: "BarChartViewCell", bundle: nil), forCellReuseIdentifier: String(describing: BarChartViewCell.self))
         }
     }
     
@@ -51,6 +53,10 @@ enum CellType {
             return cell
         case .button(let viewModel):
             let cell : ButtonViewCell? = tableView.dequeue()
+            cell?.viewModel = viewModel
+            return cell
+        case .barChart(let viewModel):
+            let cell : BarChartViewCell? = tableView.dequeue()
             cell?.viewModel = viewModel
             return cell
         }

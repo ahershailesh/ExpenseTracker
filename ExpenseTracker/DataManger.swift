@@ -104,14 +104,26 @@ class DataManger {
         CoreDataManager.shared.save()
     }
     
-    static func getMonthsExpense() -> [String: Int16] {
-        let request : NSFetchRequest<Expense> = Expense.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "timeStamp", ascending: true)]
-        let expenses = try? CoreDataManager.shared.context.fetch(request)
+    static func getMonthlyExpense(ofLastMonths month: Int) -> [String: Int16] {
+        let todaysDate = Date()
+        let todaysComponent = Calendar.current.dateComponents([.month, .year], from: todaysDate)
+        var components = DateComponents()
+        components.month = todaysComponent.month
+        components.year = todaysComponent.year
+        
+        let startDate = Calendar.current.date(from: components)
+        
+        components.year = 0
+        components.month = -month
+        
+        let endDate = Calendar.current.date(byAdding: components, to: startDate!)
+        
+        let expenses = getExpenseBetween(date1: startDate!, date2: endDate!)
+        
         var dictionary = [String: Int16]()
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/YYYY"
-        expenses?.forEach({ (expense) in
+        expenses.forEach({ (expense) in
             if let date = expense.timeStamp {
                 let dateString = formatter.string(from: date)
                 let amount = dictionary[dateString] ?? 0

@@ -27,6 +27,7 @@ class HomeViewManager : CardProtocol {
     func getCards() -> [CellType] {
         var cards = getSpendTodayCard()
         cards.append(contentsOf: getTatalExpenseCard())
+        cards.append(contentsOf: getBarChartCell())
         return cards
     }
     
@@ -88,6 +89,22 @@ class HomeViewManager : CardProtocol {
         
         return [CellType.label(viewModel: totalExpenseModel),
                 CellType.label(viewModel: totalExpenseAmountModel)]
+    }
+    
+    private func getBarChartCell() -> [CellType] {
+//        let attributedString = NSAttributedString(string: Strings.BAR_CHART_MESSAGE, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18),
+//        NSAttributedString.Key.foregroundColor : UIColor.black])
+//
+//        let totalExpenseModel = LabelViewModel(alignment: .center, text: attributedString, backgroundColor: .white, curve: .top(radius: 8, margin: 16))
+//        let dictionary = DataManger.getMonthsExpense()
+//        let months = dictionary.keys.map { $0 }
+//        let totalExpenses = dictionary.values.map { Double($0) }
+//
+//        let chartModel = ChartViewModel(dataPoints: months, values: totalExpenses, backgroundColor: .blue, curve: .bottom(radius: 8, margin: 8))
+//
+//        return [CellType.label(viewModel: totalExpenseModel),
+//                CellType.barChart(viewModel: chartModel)]
+        return []
     }
     
     private func getTotalExpenseOfThisMonth() -> Int {

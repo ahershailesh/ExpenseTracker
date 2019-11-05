@@ -22,24 +22,6 @@ struct LabelViewModel : ViewModel {
     var curve : Curve
 }
 
-//protocol CardView {
-//
-//    associatedtype curve : CardViewType
-//    associatedtype contentView : UIView
-//
-//    func setCurve(curve : CardViewType)
-//}
-//
-//extension CardView {
-//    func setCurve(curve : Curve) {
-//        switch curve {
-//        case .bottom : self.contentView.roundCorners(corners: [.topLeft, .topRight], radius: 8)
-//        case .top :
-//        case .none :
-//        }
-//    }
-//}
-
 class LabelViewCell: UITableViewCell, BaseTableViewProtocol {
     
     @IBOutlet weak var label: UILabel!

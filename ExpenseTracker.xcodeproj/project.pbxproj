@@ -54,9 +54,10 @@
 		F2CE84162365614600EC3F57 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CE84152365614600EC3F57 /* Strings.swift */; };
 		F2CE841923656A0500EC3F57 /* ButtonViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CE841723656A0500EC3F57 /* ButtonViewCell.swift */; };
 		F2CE841A23656A0500EC3F57 /* ButtonViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2CE841823656A0500EC3F57 /* ButtonViewCell.xib */; };
-		F2CE841C23670B1100EC3F57 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CE841B23670B1100EC3F57 /* Button.swift */; };
 		F2D04F1723503197009EB085 /* ExpenseData.json in Resources */ = {isa = PBXBuildFile; fileRef = F2D04F1623503197009EB085 /* ExpenseData.json */; };
 		F2D04F86236CA0A300524535 /* HomeViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D04F85236CA0A300524535 /* HomeViewManager.swift */; };
+		F2D04F89236EBBFD00524535 /* BarChartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D04F87236EBBFD00524535 /* BarChartViewCell.swift */; };
+		F2D04F8A236EBBFD00524535 /* BarChartViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2D04F88236EBBFD00524535 /* BarChartViewCell.xib */; };
 		F2ECC5B32352CAC80092982F /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ECC5B12352CAC80092982F /* ColorCollectionViewCell.swift */; };
 		F2ECC5B42352CAC80092982F /* ColorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2ECC5B22352CAC80092982F /* ColorCollectionViewCell.xib */; };
 		F2F9E5B9235230E400CD971E /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2F9E5B8235230E300CD971E /* Color.xcassets */; };
@@ -114,9 +115,10 @@
 		F2CE84152365614600EC3F57 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		F2CE841723656A0500EC3F57 /* ButtonViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewCell.swift; sourceTree = "<group>"; };
 		F2CE841823656A0500EC3F57 /* ButtonViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ButtonViewCell.xib; sourceTree = "<group>"; };
-		F2CE841B23670B1100EC3F57 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		F2D04F1623503197009EB085 /* ExpenseData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ExpenseData.json; sourceTree = "<group>"; };
 		F2D04F85236CA0A300524535 /* HomeViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewManager.swift; sourceTree = "<group>"; };
+		F2D04F87236EBBFD00524535 /* BarChartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartViewCell.swift; sourceTree = "<group>"; };
+		F2D04F88236EBBFD00524535 /* BarChartViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarChartViewCell.xib; sourceTree = "<group>"; };
 		F2ECC5B12352CAC80092982F /* ColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollectionViewCell.swift; sourceTree = "<group>"; };
 		F2ECC5B22352CAC80092982F /* ColorCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCollectionViewCell.xib; sourceTree = "<group>"; };
 		F2F9E5B8235230E300CD971E /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
@@ -254,7 +256,8 @@
 				F2AD9E86235DFA9A00FE7655 /* LabelViewCell.xib */,
 				F2CE841723656A0500EC3F57 /* ButtonViewCell.swift */,
 				F2CE841823656A0500EC3F57 /* ButtonViewCell.xib */,
-				F2CE841B23670B1100EC3F57 /* Button.swift */,
+				F2D04F87236EBBFD00524535 /* BarChartViewCell.swift */,
+				F2D04F88236EBBFD00524535 /* BarChartViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				F269C9482342681100894DCD /* ListingViewController.xib in Resources */,
 				F26598F62355757400294933 /* ExpenseViewController.xib in Resources */,
 				F2A829F9233FD14900CC75AD /* HistoryViewController.xib in Resources */,
+				F2D04F8A236EBBFD00524535 /* BarChartViewCell.xib in Resources */,
 				F26598FC235575C800294933 /* TextFieldTableViewCell.xib in Resources */,
 				F2ECC5B42352CAC80092982F /* ColorCollectionViewCell.xib in Resources */,
 				F2A8BD10233FD450002C7BAF /* TwoLabelTableViewCell.xib in Resources */,
@@ -422,6 +426,7 @@
 				F2C7EFB82348E1F30032AA41 /* Global.swift in Sources */,
 				F26598F52355757400294933 /* ExpenseViewController.swift in Sources */,
 				F269C9492342681100894DCD /* ListingViewController.swift in Sources */,
+				F2D04F89236EBBFD00524535 /* BarChartViewCell.swift in Sources */,
 				F2B17655234F97A200D174F0 /* Expense+CoreDataClass.swift in Sources */,
 				F25BDE482349A50900D2DD12 /* LabelHeaderViewCollectionReusableView.swift in Sources */,
 				F2ECC5B32352CAC80092982F /* ColorCollectionViewCell.swift in Sources */,
@@ -440,7 +445,6 @@
 				F25CEB16234075FA005664BB /* HistoryViewModel.swift in Sources */,
 				F269C9452340B48D00894DCD /* Constants.swift in Sources */,
 				F2B17654234F97A200D174F0 /* Category+CoreDataProperties.swift in Sources */,
-				F2CE841C23670B1100EC3F57 /* Button.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

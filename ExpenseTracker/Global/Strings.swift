@@ -15,6 +15,7 @@ class Strings {
     static let ADD_SOME_EXPENSE_MESSAGE = "Add some expense"
     static let ADD_SOME_MORE_EXPENSE_MESSAGE = "Add some more expense"
     static let LAST_UPDATED_MESSAGE = "Last updated ** ago"
+    static let BAR_CHART_MESSAGE = "Monthly chart"
     
     static let TOTAL_EXPESE_MESSAGE = "Total expense of this month"
     

@@ -25,9 +25,6 @@ class HistoryViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
-        
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
-        navigationItem.rightBarButtonItem = addButton
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,11 +46,6 @@ class HistoryViewController: UIViewController {
             
         }
         tableView.reloadData()
-    }
-    
-    @objc private func addButtonTapped() {
-        let expenseController = AddExpenseViewController(nibName: "AddExpenseViewController", bundle: nil)
-        present(UINavigationController(rootViewController: expenseController) , animated: true, completion: nil)
     }
     
     private func registerViews() {
