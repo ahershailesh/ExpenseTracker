@@ -92,19 +92,23 @@ class HomeViewManager : CardProtocol {
     }
     
     private func getBarChartCell() -> [CellType] {
-//        let attributedString = NSAttributedString(string: Strings.BAR_CHART_MESSAGE, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18),
-//        NSAttributedString.Key.foregroundColor : UIColor.black])
-//
-//        let totalExpenseModel = LabelViewModel(alignment: .center, text: attributedString, backgroundColor: .white, curve: .top(radius: 8, margin: 16))
-//        let dictionary = DataManger.getMonthsExpense()
-//        let months = dictionary.keys.map { $0 }
-//        let totalExpenses = dictionary.values.map { Double($0) }
-//
-//        let chartModel = ChartViewModel(dataPoints: months, values: totalExpenses, backgroundColor: .blue, curve: .bottom(radius: 8, margin: 8))
-//
-//        return [CellType.label(viewModel: totalExpenseModel),
-//                CellType.barChart(viewModel: chartModel)]
-        return []
+        let attributedString = NSAttributedString(string: Strings.BAR_CHART_MESSAGE, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18),
+        NSAttributedString.Key.foregroundColor : UIColor.black])
+
+        let totalExpenseModel = LabelViewModel(alignment: .center, text: attributedString, backgroundColor: .white, curve: .top(radius: 8, margin: 16))
+        let dictionary = DataManger.getMonthlyExpense(ofLastMonths: 6)
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/YYYY"
+        
+        let chartData = dictionary.keys.sorted { $0 < $1 }.map { (date) -> (String, Double) in
+            return (formatter.string(from: date), Double(dictionary[date] ?? 0))
+        }
+
+        let chartModel = ChartViewModel(dataPoints: chartData.map { $0.0 }, values: chartData.map { $0.1 }, backgroundColor: .blue, curve: .bottom(radius: 8, margin: 8))
+
+        return [CellType.label(viewModel: totalExpenseModel),
+                CellType.barChart(viewModel: chartModel)]
     }
     
     private func getTotalExpenseOfThisMonth() -> Int {

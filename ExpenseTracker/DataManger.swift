@@ -104,7 +104,7 @@ class DataManger {
         CoreDataManager.shared.save()
     }
     
-    static func getMonthlyExpense(ofLastMonths month: Int) -> [String: Int16] {
+    static func getMonthlyExpense(ofLastMonths month: Int) -> [Date: Int] {
         let todaysDate = Date()
         let todaysComponent = Calendar.current.dateComponents([.month, .year], from: todaysDate)
         var components = DateComponents()
@@ -120,16 +120,19 @@ class DataManger {
         
         let expenses = getExpenseBetween(date1: startDate!, date2: endDate!)
         
-        var dictionary = [String: Int16]()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MM/YYYY"
-        expenses.forEach({ (expense) in
-            if let date = expense.timeStamp {
-                let dateString = formatter.string(from: date)
-                let amount = dictionary[dateString] ?? 0
-                dictionary[dateString] = amount + expense.spend
+        components = DateComponents()
+        
+        
+        var dictionary = [Date: Int]()
+        expenses.forEach { (expense) in
+            guard let date = expense.timeStamp else { return  }
+            
+            components.month    = Calendar.current.component(.month, from: date)
+            components.year     = Calendar.current.component(.year, from: date)
+            if let thisDate = Calendar.current.date(from: components) {
+                dictionary[thisDate] = (dictionary[thisDate] ?? 0) + Int(expense.spend)
             }
-        })
+        }
         return dictionary
     }
     
