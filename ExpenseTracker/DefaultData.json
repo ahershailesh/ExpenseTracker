@@ -7,7 +7,7 @@
         "Bike"
     ],
     "Food" : [
-        "Restorant",
+        "Restaurant",
         "Vegatables"
     ],
     "Penalties" : [
@@ -19,7 +19,7 @@
     "EMI" : [
         "House",
         "Car",
-        "Personnel",
+        "Personal",
         "Other"
     ],
     "Entertainment" : [

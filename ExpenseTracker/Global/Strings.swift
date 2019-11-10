@@ -10,10 +10,10 @@ import UIKit
 
 class Strings {
 
-    static let NO_EXPENSE_RECORDED_MESSAGE = "How much you spend today?"
+    static let NO_EXPENSE_RECORDED_MESSAGE = "How much have you spent today?"
     static let TOTAL_EXPENSE_TODAY = "You spent ₹ ** today"
     static let ADD_SOME_EXPENSE_MESSAGE = "Add some expense"
-    static let ADD_SOME_MORE_EXPENSE_MESSAGE = "Add some more expense"
+    static let ADD_SOME_MORE_EXPENSE_MESSAGE = "Add some more expenses"
     static let LAST_UPDATED_MESSAGE = "Last updated ** ago"
     static let BAR_CHART_MESSAGE = "Monthly chart"
     

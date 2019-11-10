@@ -115,7 +115,7 @@ final class AddExpenseViewController : UIViewController {
     private func setupModel(model: ExpenseViewModel?) {
         
         let data : [(String, Any?, UIKeyboardType)] =
-            [("Amount in ruppe" , model?.expenseAmount, .numberPad),
+            [("Amount in rupee(s)" , model?.expenseAmount, .numberPad),
              ("Note", model?.note, .alphabet)]
             
           textFieldModels = data.map { placeHolder, value, type in
