@@ -78,5 +78,6 @@ class LabelViewCell: UITableViewCell, BaseTableViewProtocol {
     private func cleanCell() {
         label.textAlignment = .left
         label.attributedText = nil
+        curve = .none
     }
 }

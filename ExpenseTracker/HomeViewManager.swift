@@ -49,18 +49,26 @@ class HomeViewManager : CardProtocol {
         
         let howMuchYouSpendTodayString = NSAttributedString(string: addExpsenseMessage, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18),
                                                                                                                 NSAttributedString.Key.foregroundColor : UIColor.black])
+        
+        // View Model 1
         let labelViewModel = LabelViewModel(alignment: .center, text: howMuchYouSpendTodayString, backgroundColor: .white, curve: .top(radius: 8, margin: 24))
         
         let buttonAttributedString = NSAttributedString(string: buttonMessage, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 20),
                                                                                                                 NSAttributedString.Key.foregroundColor : UIColor.white])
-        let buttonModel = ButtonViewModel(text: buttonAttributedString, viewBackgroundColor: .white, buttonBackgroundColor: .blue, forgroundColor: .white, fixWidth: buttonWidth, curve: .none) { [weak self] in
+        
+        let timeStampString = getLastUpatedTimeStamp()
+        let curve : Curve = timeStampString == nil ? .bottom(radius: 8, margin: 24) : .none
+        
+        // View Model 2
+        let buttonModel = ButtonViewModel(text: buttonAttributedString, viewBackgroundColor: .white, buttonBackgroundColor: .blue, forgroundColor: .white, fixWidth: buttonWidth, curve: curve) { [weak self] in
             self?.showExpenseViewController()
         }
         
         cellTypes = [CellType.label(viewModel: labelViewModel),
         CellType.button(viewModel: buttonModel)]
         
-        if let timeStampString = getLastUpatedTimeStamp() {
+        // View Model 3
+        if let timeStampString = timeStampString {
             var lastUpdatedMessage = Strings.LAST_UPDATED_MESSAGE
             lastUpdatedMessage = lastUpdatedMessage.replacingOccurrences(of: "**", with: timeStampString)
             let lastUpdatedAttributedString = NSAttributedString(string: lastUpdatedMessage, attributes: [NSAttributedString.Key.font : UIFont.italicSystemFont(ofSize: 12),
@@ -158,7 +166,7 @@ class HomeViewManager : CardProtocol {
         if let min = components.minute, min != 0 {
             return "\(min) min/s"
         }
-        return nil
+        return "a moment ago"
     }
 }
 
