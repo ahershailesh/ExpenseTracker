@@ -23,6 +23,8 @@ class HomeViewManager : CardProtocol {
     var presenter: PresentationProtocol?
     var expenseController : AddExpenseViewController?
     
+    private let bottomCurve : Curve = .bottom(radius: 8, margin: 8)
+    private let topCurve : Curve = .top(radius: 8, margin: 8)
     
     func getCards() -> [CellType] {
         var cards = getSpendTodayCard()
@@ -51,13 +53,13 @@ class HomeViewManager : CardProtocol {
                                                                                                                 NSAttributedString.Key.foregroundColor : UIColor.black])
         
         // View Model 1
-        let labelViewModel = LabelViewModel(alignment: .center, text: howMuchYouSpendTodayString, backgroundColor: .white, curve: .top(radius: 8, margin: 24))
+        let labelViewModel = LabelViewModel(alignment: .center, text: howMuchYouSpendTodayString, backgroundColor: .white, curve: topCurve)
         
         let buttonAttributedString = NSAttributedString(string: buttonMessage, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 20),
                                                                                                                 NSAttributedString.Key.foregroundColor : UIColor.white])
         
         let timeStampString = getLastUpatedTimeStamp()
-        let curve : Curve = timeStampString == nil ? .bottom(radius: 8, margin: 24) : .none
+        let curve : Curve = timeStampString == nil ? bottomCurve : .none
         
         // View Model 2
         let buttonModel = ButtonViewModel(text: buttonAttributedString, viewBackgroundColor: .white, buttonBackgroundColor: .blue, forgroundColor: .white, fixWidth: buttonWidth, curve: curve) { [weak self] in
@@ -73,7 +75,7 @@ class HomeViewManager : CardProtocol {
             lastUpdatedMessage = lastUpdatedMessage.replacingOccurrences(of: "**", with: timeStampString)
             let lastUpdatedAttributedString = NSAttributedString(string: lastUpdatedMessage, attributes: [NSAttributedString.Key.font : UIFont.italicSystemFont(ofSize: 12),
                                                                                                                            NSAttributedString.Key.foregroundColor : UIColor.lightGray])
-            let lastUpdatedViewModel = LabelViewModel(alignment: .right, text: lastUpdatedAttributedString, backgroundColor: .white, curve: .bottom(radius: 8, margin: 16))
+            let lastUpdatedViewModel = LabelViewModel(alignment: .right, text: lastUpdatedAttributedString, backgroundColor: .white, curve: bottomCurve)
             cellTypes.append(CellType.label(viewModel: lastUpdatedViewModel))
             
         }
@@ -86,12 +88,12 @@ class HomeViewManager : CardProtocol {
         
         let totalExpenseString = NSAttributedString(string: Strings.TOTAL_EXPESE_MESSAGE, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18),
                                                                                                                 NSAttributedString.Key.foregroundColor : UIColor.black])
-        let totalExpenseModel = LabelViewModel(alignment: .center, text: totalExpenseString, backgroundColor: .white, curve: .top(radius: 8, margin: 16))
+        let totalExpenseModel = LabelViewModel(alignment: .center, text: totalExpenseString, backgroundColor: .white, curve: topCurve)
         
         
         let totalExpenseAmountString = NSAttributedString(string: totalExpenseAmount, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 24),
                                                                                                                 NSAttributedString.Key.foregroundColor : UIColor.blue])
-        let totalExpenseAmountModel = LabelViewModel(alignment: .center, text: totalExpenseAmountString, backgroundColor: .white, curve: .bottom(radius: 8, margin: 16))
+        let totalExpenseAmountModel = LabelViewModel(alignment: .center, text: totalExpenseAmountString, backgroundColor: .white, curve: bottomCurve)
         
      
         
@@ -103,17 +105,17 @@ class HomeViewManager : CardProtocol {
         let attributedString = NSAttributedString(string: Strings.BAR_CHART_MESSAGE, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18),
         NSAttributedString.Key.foregroundColor : UIColor.black])
 
-        let totalExpenseModel = LabelViewModel(alignment: .center, text: attributedString, backgroundColor: .white, curve: .top(radius: 8, margin: 16))
+        let totalExpenseModel = LabelViewModel(alignment: .center, text: attributedString, backgroundColor: .white, curve: topCurve)
         let dictionary = DataManger.getMonthlyExpense(ofLastMonths: 6)
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM/YYYY"
+        formatter.dateFormat = "MMM YYYY"
         
         let chartData = dictionary.keys.sorted { $0 < $1 }.map { (date) -> (String, Double) in
             return (formatter.string(from: date), Double(dictionary[date] ?? 0))
         }
 
-        let chartModel = ChartViewModel(dataPoints: chartData.map { $0.0 }, values: chartData.map { $0.1 }, backgroundColor: .blue, curve: .bottom(radius: 8, margin: 8))
+        let chartModel = ChartViewModel(dataPoints: chartData.map { $0.0 }, values: chartData.map { $0.1 }, backgroundColor: .blue, curve: bottomCurve)
 
         return [CellType.label(viewModel: totalExpenseModel),
                 CellType.barChart(viewModel: chartModel)]

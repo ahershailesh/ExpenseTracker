@@ -118,10 +118,9 @@ class DataManger {
         
         let endDate = Calendar.current.date(byAdding: components, to: startDate!)
         
-        let expenses = getExpenseBetween(date1: startDate!, date2: endDate!)
+        let expenses = getExpenseBetween(date1: todaysDate, date2: endDate!)
         
         components = DateComponents()
-        
         
         var dictionary = [Date: Int]()
         expenses.forEach { (expense) in
